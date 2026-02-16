@@ -1,0 +1,73 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background-color: #0f172a;
+  border-right: 1px solid #1e293b;
+  position: sticky;
+  top: 60px; /* matches navbar height */
+  padding-top: 15px;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0 10px;
+}
+
+/* Links */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #cbd5e1;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #1e293b;
+  color: #06b6d4;
+}
+
+/* Active Link */
+.sidebar-link.active {
+  background: linear-gradient(45deg, #06b6d4, #7c3aed);
+  color: white;
+  font-weight: 500;
+}
+
+/* Icons */
+.sidebar-icon {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Text */
+.sidebar-text {
+  white-space: nowrap;
+}
+
+/* Light Mode Support */
+body.light-mode .sidebar {
+  background-color: #f8fafc;
+  border-right: 1px solid #e2e8f0;
+}
+
+body.light-mode .sidebar-link {
+  color: #334155;
+}
+
+body.light-mode .sidebar-link:hover {
+  background-color: #e2e8f0;
+}
+
+body.light-mode .sidebar-link.active {
+  background: linear-gradient(45deg, #06b6d4, #7c3aed);
+  color: white;
+}
