@@ -12,7 +12,6 @@ const Home = () => {
   useEffect(() => {
     getVideos()
       .then((res) => {
-        console.log(res)
         setVideos(res.data.docs);
       })
       .catch((err) => {

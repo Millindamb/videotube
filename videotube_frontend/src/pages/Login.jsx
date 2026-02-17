@@ -5,6 +5,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import { loginInUser } from '../api/Login'
 
 const Login = () => {
+  const [isLoading,setIsLoading]=useState(false);
   const values=useContext(isAuthContext);
   const navigate=useNavigate();
   const [username,setUsername]=useState("");
@@ -13,9 +14,9 @@ const Login = () => {
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
-
+    setIsLoading(true);
     try {
-      const response = await loginInUser(username, password)
+      const response=await loginInUser(username, password)
 
       if (response.data.success){
         localStorage.setItem("accessToken", response.data.data.accessToken)
@@ -23,11 +24,19 @@ const Login = () => {
         navigate("/")
         values.setLoggedIn(true)
       }else{
-        setError("Invalid credentials. Try again.")
+        setError(response.data.Error)
       }
     }catch(err){
-      setError("Login failed. Try again.")
-      console.log(err)
+      const status=err.response?.status;
+      if(status===404){
+        setError("User does not exist.");
+      }else if(status===401){
+        setError("Invalid user password.");
+      }else{
+        setError("login failed. Try again.");
+      }
+    }finally{
+      setIsLoading(false);
     }
   }
   return (
@@ -45,7 +54,7 @@ const Login = () => {
         </div>
         {error && <div className='error' style={{color:'red'}}>{error}</div>}
         <div className='login-buttons'>
-          <button type='submit'>Sign In</button>
+          <button type="submit" disabled={isLoading} style={{cursor:isLoading ? "not-allowed":"pointer",opacity: isLoading ? 0.5:1,}}> {isLoading ? "Signing-In...":"Sign_In"}</button>
         </div>
         <div className='desc'>
           <p>Don't have an account? <Link to="/users/register" className='register'>Sign-up</Link></p>
