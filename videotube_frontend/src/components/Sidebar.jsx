@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 
 const publicLinks = [
-  { title: "Home", url: "/", icon: <i class="fa-solid fa-house"></i> },
+  { title: "Home", url: "/", icon: <i className="fa-solid fa-house"></i> },
 ];
 
 const authLinks = [

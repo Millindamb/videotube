@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import { getVideos } from '../api/VideoApi';
+import { isAuthContext } from '../context/context';
 
 const Home = () => {
+  const values=useContext(isAuthContext);
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
 
   useEffect(() => {
     getVideos()
@@ -26,7 +29,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Videos</h1>
+      <h1>Videos {values.isLoggedIn && <p>final validation </p>}</h1>
       {videos.length === 0 ? (
         <p>No videos found</p>
       ) : (
