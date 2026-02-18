@@ -1,0 +1,9 @@
+.video-section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.more-videos{
+    width: 15%;
+}

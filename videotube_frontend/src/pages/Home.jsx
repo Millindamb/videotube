@@ -1,13 +1,12 @@
-import React, { useEffect, useState,useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getVideos } from '../api/VideoApi';
-import { isAuthContext } from '../context/context';
+import VideoCard from '../components/VideoCard';
+import './Home.css';
 
 const Home = () => {
-  const values=useContext(isAuthContext);
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
 
   useEffect(() => {
     getVideos()
@@ -23,19 +22,22 @@ const Home = () => {
       });
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="status">Loading...</p>;
+  if (error) return <p className="status error">{error}</p>;
 
   return (
-    <div>
-      <h1>Videos {values.isLoggedIn && <p>final validation </p>}</h1>
-      {videos.length === 0 ? (
-        <p>No videos found</p>
-      ) : (
-        videos.map((v) => (
-          <div key={v._id}>{v.title}</div>
-        ))
-      )}
+    <div className="home">
+      <h1 className="title">Videos</h1>
+
+      <div className="video-grid">
+        {videos.length === 0 ? (
+          <p>No videos found</p>
+        ) : (
+          videos.map((v) => (
+            <VideoCard key={v._id} video={v} />
+          ))
+        )}
+      </div>
     </div>
   );
 };

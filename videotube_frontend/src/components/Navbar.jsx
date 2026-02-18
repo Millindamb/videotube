@@ -1,13 +1,16 @@
 import React, { useState,useContext } from "react";
 import { isAuthContext } from "../context/context";
 import { Link, useNavigate } from "react-router-dom";
+import { logoutUser } from "../api/logout";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({showSidebar,setShowSidebar}) => {
   const values=useContext(isAuthContext);
-  const logout = () => {
-    localStorage.removeItem("accessToken")
-    values.setLoggedIn(false)
+  const logout=async()=>{
+    const response=await logoutUser();
+    if(response.data.success){
+      values.setLoggedIn(false)
+    }
   }
   const [searchQuery, setSearchQuery] = useState("");
   const [darkMode, setDarkMode] = useState(true);
@@ -30,8 +33,7 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <div className="nav-left">
-        <button className="menu-btn"><i className="fa-solid fa-bars"></i></button>
-        
+        <button onClick={()=>{setShowSidebar(!showSidebar)}} className="menu-btn"><i className="fa-solid fa-bars"></i></button>
 
         <Link to="/" className="logo">
           <div className="logo-box"><i className="fa-solid fa-video"></i></div>
