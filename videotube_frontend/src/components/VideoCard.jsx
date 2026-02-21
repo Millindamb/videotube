@@ -21,15 +21,15 @@ const formatTimeAgo = (dateString) => {
     minute: 60,
   };
 
-  for (let key in intervals) {
-    const interval = Math.floor(seconds / intervals[key]);
-    if (interval >= 1) {
-      return `${interval} ${key}${interval > 1 ? "s" : ""} ago`;
+    for (let key in intervals) {
+      const interval = Math.floor(seconds / intervals[key]);
+      if (interval >= 1) {
+        return `${interval} ${key}${interval > 1 ? "s" : ""} ago`;
+      }
     }
-  }
 
-  return "Just now";
-};
+    return "Just now";
+  };
 
 const VideoCard = ({ video }) => {
   return (

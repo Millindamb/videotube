@@ -1,0 +1,55 @@
+.channel-info{
+    display: flex;
+    flex-direction: row;
+    margin: 5px 0px;
+}
+
+.image, .image img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.info{
+    margin-left: 5px;
+}
+
+.chn-name{
+    font-size: larger;
+    font-weight: 700;
+}
+
+.chn-sub{
+    font-size: small;
+}
+
+.sub-button {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.like-video {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.sub-button button,.like-video button {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.sub-button button {
+    background-color: #cc0000;
+    color: white;
+}
+
+.like-video button {
+    background-color: #f2f2f2;
+    color: black;
+}

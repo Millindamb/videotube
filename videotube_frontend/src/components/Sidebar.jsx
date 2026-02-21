@@ -14,23 +14,23 @@ const Sidebar = () => {
         </NavLink>
 
         {values.isLoggedIn && <NavLink to="/subscriptions" className={({ isActive })=>isActive ? "sidebar-link active" : "sidebar-link"}>
-          <span className="sidebar-icon"><i class="fa-solid fa-play"></i></span><span className="sidebar-text">Subscriptions</span>
+          <span className="sidebar-icon"><i className="fa-solid fa-play"></i></span><span className="sidebar-text">Subscriptions</span>
         </NavLink>}
 
         {values.isLoggedIn && <NavLink to="/liked" className={({ isActive })=> isActive ? "sidebar-link active" : "sidebar-link"}>
-          <span className="sidebar-icon"><i class="fa-solid fa-thumbs-up"></i></span><span className="sidebar-text">Liked Videos</span>
+          <span className="sidebar-icon"><i className="fa-solid fa-thumbs-up"></i></span><span className="sidebar-text">Liked Videos</span>
         </NavLink>}
 
         {values.isLoggedIn && <NavLink to="/dashboard/playlists" className={({ isActive }) => isActive ? "sidebar-link active" : "sidebar-link"}>
-          <span className="sidebar-icon"><i class="fa-solid fa-folder"></i></span><span className="sidebar-text">Playlists</span>
+          <span className="sidebar-icon"><i className="fa-solid fa-folder"></i></span><span className="sidebar-text">Playlists</span>
         </NavLink>}
 
         {values.isLoggedIn && <NavLink to="/tweets" className={({ isActive }) => isActive ? "sidebar-link active" : "sidebar-link"}>
-          <span className="sidebar-icon"><i class="fa-solid fa-comment"></i></span><span className="sidebar-text">Tweets</span>
+          <span className="sidebar-icon"><i className="fa-solid fa-comment"></i></span><span className="sidebar-text">Tweets</span>
         </NavLink>}
 
         {values.isLoggedIn && <NavLink to="/dashboard" className={({ isActive }) => isActive ? "sidebar-link active" : "sidebar-link"}>
-          <span className="sidebar-icon"><i class="fa-solid fa-chart-line"></i></span><span className="sidebar-text">Dashboard</span>
+          <span className="sidebar-icon"><i className="fa-solid fa-chart-line"></i></span><span className="sidebar-text">Dashboard</span>
         </NavLink>}
       </div>
     </aside>
