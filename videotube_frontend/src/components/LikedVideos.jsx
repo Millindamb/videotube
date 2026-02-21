@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const LikedVideos = () => {
+  useEffect(()=>{},[])
   return (
     <div>
       this is the likedVideos section

@@ -1,0 +1,45 @@
+.channel-detail{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.hd{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.fd{
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.channelInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 5px;
+}
+
+.ch-img img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ch-username {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.channel-videos {
+    display: flex;
+    flex-wrap: wrap;      /* Keep videos in single row */
+    gap: 16px;
+    width: 100%;
+}
+
+.channel-videos>*{
+    width: 275px;
+}
