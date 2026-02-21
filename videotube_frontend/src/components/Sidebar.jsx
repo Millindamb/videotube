@@ -5,6 +5,8 @@ import "./Sidebar.css";
 
 const Sidebar = () => {
   const values=useContext(isAuthContext);
+  const user=JSON.parse(localStorage.getItem("user"));
+
 
   return (
     <aside className="sidebar">
@@ -21,7 +23,7 @@ const Sidebar = () => {
           <span className="sidebar-icon"><i className="fa-solid fa-thumbs-up"></i></span><span className="sidebar-text">Liked Videos</span>
         </NavLink>}
 
-        {values.isLoggedIn && <NavLink to="/dashboard/playlists" className={({ isActive }) => isActive ? "sidebar-link active" : "sidebar-link"}>
+        {values.isLoggedIn && <NavLink to={`/playlist/user/${user._id}`} className={({ isActive }) => isActive ? "sidebar-link active" : "sidebar-link"}>
           <span className="sidebar-icon"><i className="fa-solid fa-folder"></i></span><span className="sidebar-text">Playlists</span>
         </NavLink>}
 
