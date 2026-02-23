@@ -1,0 +1,118 @@
+/* Main container */
+.playlist {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Edit box section */
+.editbox {
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Playlist name */
+.name {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Playlist description */
+.description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Form styling */
+.editbox form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.editbox input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.editbox input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Buttons */
+button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease-in-out;
+}
+
+/* Edit button */
+.editbox > button {
+  background-color: #4f46e5;
+  color: white;
+  margin-top: 10px;
+}
+
+/* Update button */
+form button {
+  background-color: #4f46e5;
+  color: white;
+}
+
+form button:hover {
+  background-color: #1e7e34;
+}
+
+/* Video section */
+.vdo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.vdo>*{
+    width: 250px;
+}
+
+/* Each video wrapper */
+.vdo > div {
+  background-color: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Remove button */
+.vdo button {
+  background-color: #dc3545;
+  color: white;
+  margin-top: 10px;
+}
+
+.vdo button:hover {
+  background-color: #a71d2a;
+}
+
+
+/* Responsive */
+@media (max-width: 600px) {
+  .playlist {
+    padding: 10px;
+  }
+
+  .name {
+    font-size: 22px;
+  }
+}

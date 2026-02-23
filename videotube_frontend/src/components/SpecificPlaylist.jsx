@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getPlaylistById,updatePlaylist,removeVideoFromPlaylist } from '../api/GetUsersPlalists'
 import VideoCard from './VideoCard'
+import "./SpecificPlaylist.css"
 
 const SpecificPlaylist = () => {
     const [loading,setLoading]=useState(true)
     const {playlistid}=useParams()
     const [name,setName]=useState("")
     const [description,setDescription]=useState("")
-    const [playlist,setPlaylist]=useState(null)
+    const [playlist,setPlaylist]=useState({})
     const [canEdit,setCanEdit]=useState(false)
 
     const updatePlaylistdetails=async(e)=>{
@@ -37,10 +38,12 @@ const SpecificPlaylist = () => {
       const fetchPlaylistData=async()=>{
         try{
           const response=await getPlaylistById(playlistid);
-          setPlaylist(response.data.data)
-          setName(response.data.data.name)
-          setDescription(response.data.data.description)
-          setLoading(false)
+          const playlistData=response.data.data[0];
+          setPlaylist(playlistData);
+          setName(playlistData.name);
+          setDescription(playlistData.description);
+          setLoading(false);
+          console.log(playlistData);
         }catch(e){console.log(e)}
       }
       fetchPlaylistData()
@@ -66,21 +69,19 @@ const SpecificPlaylist = () => {
       </div>
       <div className='vdo'>
         {loading ? (
-          <div>Loading...</div>
-        ) : !playlist?.videos ? (
-          <div>No videos found</div>
-        ) : playlist.videos.length === 0 ? (
-          <div>No Videos in the playlist Yet</div>
-        ) : (
-          playlist.videos.map((v) => (
-            <div key={v._id}>
-              <VideoCard video={v} />
-              <button onClick={() => removeVideo(v._id)}>
-                Remove Video
-              </button>
-            </div>
-          ))
-        )}
+            <div>Loading...</div>
+          ) : playlist?.videos?.length === 0 ? (
+            <div>No Videos in the playlist Yet</div>
+          ) : (
+            playlist?.videos?.map((v) => (
+              <div key={v._id}>
+                <VideoCard video={v} />
+                <button onClick={() => removeVideo(v._id)}>
+                  Remove Video
+                </button>
+              </div>
+            ))
+          )}
       </div>
     </div>
   )

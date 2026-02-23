@@ -3,7 +3,7 @@ import React from 'react'
 const Tweets = () => {
   return (
     <div>
-      this is the tweets
+      this is the tweets section
     </div>
   )
 }
