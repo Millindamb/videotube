@@ -1,0 +1,123 @@
+/* Main Tweets Container */
+.Tweets {
+  max-width: 900px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Create Tweet Section */
+.createTweet {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #1e293b;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.createTweet button {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.createTweet button:hover {
+  background-color: #4338ca;
+}
+
+/* Tweet Form */
+.tweet-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.tweet-inputs input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.tweet-inputs input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+/* Individual Tweet Card */
+.Tweets > div {
+  background-color: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  color: white;
+}
+
+/* User Info Section */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-info .name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Tweet Content */
+.Tweets > div > div:nth-child(2) {
+  font-size: 15px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+/* Tweet Buttons */
+.tweet-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Delete Button */
+.tweet-buttons button:first-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.tweet-buttons button:first-child:hover {
+  background-color: #a71d2a;
+}
+
+/* Update Button */
+.tweet-buttons button:last-child {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.tweet-buttons button:last-child:hover {
+  background-color: #4338ca;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .Tweets,
+  .createTweet {
+    padding: 15px;
+  }
+
+  .user-info img {
+    width: 35px;
+    height: 35px;
+  }
+}
