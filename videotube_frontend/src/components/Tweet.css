@@ -18,12 +18,23 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.createTweet button {
+/* General Button Style */
+button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease-in-out;
+}
+
+/* Create Button */
+.createTweet > button {
   background-color: #4f46e5;
   color: white;
 }
 
-.createTweet button:hover {
+.createTweet > button:hover {
   background-color: #4338ca;
 }
 
@@ -54,6 +65,9 @@
   border-radius: 10px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* User Info Section */
@@ -61,7 +75,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
 }
 
 .user-info img {
@@ -77,9 +90,8 @@
 }
 
 /* Tweet Content */
-.Tweets > div > div:nth-child(2) {
+.Tweets > div > div {
   font-size: 15px;
-  margin-bottom: 12px;
   line-height: 1.4;
 }
 
@@ -87,6 +99,7 @@
 .tweet-buttons {
   display: flex;
   gap: 10px;
+  margin-top: 5px;
 }
 
 /* Delete Button */
@@ -107,6 +120,31 @@
 
 .tweet-buttons button:last-child:hover {
   background-color: #4338ca;
+}
+
+/* Update Form Buttons */
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.buttons button:first-child {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.buttons button:first-child:hover {
+  background-color: #4338ca;
+}
+
+.buttons button:last-child {
+  background-color: #6c757d;
+  color: white;
+}
+
+.buttons button:last-child:hover {
+  background-color: #565e64;
 }
 
 /* Responsive */

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { getTweets,createTweet } from '../api/Tweet'
+import { getTweets,createTweet,deleteTweets, updateTweet } from '../api/Tweet'
 import './tweet.css'
 
 const Tweets = () => {
-  const [tweets,setTweets]=useState({})
-  const [create,setCreate]=useState(false)
+  const [tweets,setTweets]=useState({});
+  const [create,setCreate]=useState(false);
   const [loading,setLoading]=useState(true);
   const [content,setContent]=useState("");
+  const [update,setUpdate]=useState(null);
+  const [updateContent,setUpdateContent]=useState("");
   const user=JSON.parse(localStorage.getItem('user'));
 
   const createNewTweet=async()=>{
@@ -21,7 +23,6 @@ const Tweets = () => {
     const fetchTweets=async()=>{
       try{
         const response=await getTweets(user._id);
-        console.log(response.data.data)
         setTweets(response.data.data)
         setLoading(false)
       }catch(e){
@@ -29,14 +30,55 @@ const Tweets = () => {
       }
     }
     fetchTweets()
-  },[create])
+  },[create,update])
+
+  const deleteUserTweet=async(tweetId)=>{
+    try{
+      const response=await deleteTweets(tweetId);
+      setTweets(prev=>prev.filter(t=>t._id!==tweetId));
+    }
+    catch(e){console.log(e)}
+  }
+
+  const updateUserTweet=async()=>{
+    try{
+      const response=await updateTweet(update,updateContent);
+      setUpdate(null)
+      setUpdateContent(null)
+    }catch(e){
+      console.log(e)
+    }
+  }
+
+  const formatTimeAgo=(dateString)=>{
+  const now=new Date();
+  const created=new Date(dateString);
+  const seconds=Math.floor((now-created)/1000);
+
+  const intervals={
+    year: 31536000,
+    month: 2592000,
+    day: 86400,
+    hour: 3600,
+    minute: 60,
+  };
+
+    for(let key in intervals){
+      const interval=Math.floor(seconds/intervals[key]);
+      if(interval>=1){
+        return `${interval} ${key}${interval>1 ? "s":""} ago`;
+      }
+    }
+    return "Just now";
+  };
+
   return (
     <div>
       <div className='createTweet'>
         <button onClick={()=>{setCreate(!create)}}>Create Tweet</button>
         {create && <form onSubmit={()=>{createNewTweet()}} className='tweet-inputs'>
           <p>Content</p>
-          <input type="text" placeholder='Content' onChange={(e)=>{setContent(e.target.value)}}/>
+          <input type="text" placeholder='Content' required onChange={(e)=>{setContent(e.target.value)}}/>
           <button type='submit'>Add</button>
         </form>}
       </div>
@@ -44,15 +86,25 @@ const Tweets = () => {
       <div className='Tweets'>
         {!tweets.length?<div>no Tweets avaliable</div>:
         tweets.map((t)=>{return(
+          (update && update==t._id) ? 
           <div key={t._id}>
+            <p>Content</p>
+            <input type="text" required value={updateContent} onChange={(e)=>{setUpdateContent(e.target.value)}}/>
+            <div className="buttons">
+              <button onClick={()=>{updateUserTweet()}}>conform</button>
+              <button onClick={()=>{setUpdate(null)}}>cancle</button>
+            </div>
+          </div>
+          :<div key={t._id}>
             <div className='user-info'>
               <img src={user.avatar} alt="" />
               <div className='name'>{user.username}</div>
+              <div>{formatTimeAgo(t.createdAt)}</div>
             </div>
             <div>{t.content}</div>
             <div className='tweet-buttons'>
-              <button>Delete</button>
-              <button>Update</button>
+              <button onClick={()=>{deleteUserTweet(t._id)}}>Delete</button>
+              <button onClick={()=>{setUpdate(t._id),setUpdateContent(t.content)}}>Update</button>
             </div>
           </div>
         )})}
