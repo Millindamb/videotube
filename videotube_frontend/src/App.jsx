@@ -3,7 +3,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Logout from './pages/Logout.jsx'
 import Register from './pages/Register.jsx'
-import { Watch,Channel,Subscriptions,LikedVideos,Tweets,Settings,Playlist,SpecificPlaylist } from './components/index.js'
+import { Watch,Channel,Subscriptions,LikedVideos,Tweets,Settings,Playlist,SpecificPlaylist,Dashboard } from './components/index.js'
 import MainLayout from './layouts/MainLayout'
 import AnotherLayout from './layouts/AnotherLayout'
 import {createBrowserRouter,RouterProvider} from "react-router-dom"
@@ -21,7 +21,8 @@ const App = () => {
       {path:"/tweets",element:<Tweets/>},
       {path:"/settings",element:<Settings/>},
       {path:"/playlist/user/:userid",element:<Playlist/>},
-      {path:"/playlist/:playlistid",element:<SpecificPlaylist/>}
+      {path:"/playlist/:playlistid",element:<SpecificPlaylist/>},
+      {path:"/dashboard",element:<Dashboard/>}
       ]
     },
     {

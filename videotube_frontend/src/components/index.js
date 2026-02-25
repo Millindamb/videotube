@@ -8,5 +8,6 @@ import Playlist from "./Playlist";
 import Sidebar from "./Sidebar";
 import Tweets from "./Tweets";
 import SpecificPlaylist from "./SpecificPlaylist";
+import Dashboard from "./Dashboard";
 
-export {Playlist,Watch,Settings,Subscriptions,Channel,LikedVideos,Navbar,Sidebar,Tweets,SpecificPlaylist};
+export {Playlist,Watch,Settings,Subscriptions,Channel,LikedVideos,Navbar,Sidebar,Tweets,SpecificPlaylist,Dashboard};
