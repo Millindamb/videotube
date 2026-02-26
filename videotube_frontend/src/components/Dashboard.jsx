@@ -1,9 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import {NavLink} from "react-router-dom"
-import { getDashboardStats, uploadVideo } from '../api/Dashboard'
+import { getDashboardStats, getUserVideos, uploadVideo } from '../api/Dashboard'
+import VideoCard from './VideoCard'
 import './dashboard.css'
+import DahsboardVideo from './DashboardVideo'
 
 const Dashboard = () => {
+  const [currentPart,setCurrentPart]=useState(true)
+  const [videos,setVideos]=useState({})
   const [title,setTitle]=useState("")
   const [description,setDescription]=useState("")
   const [video,setVideo]=useState(null)
@@ -12,6 +16,7 @@ const Dashboard = () => {
   const [user,setUser]=useState({})
   const videoRef=useRef(null)
   const thumbnailRef=useRef(null)
+
   useEffect(()=>{
     const fetchDashboardData=async()=>{
       try{
@@ -21,6 +26,15 @@ const Dashboard = () => {
     }
     fetchDashboardData()
   },[])
+
+  useEffect(()=>{
+    const fetchUserVideos=async()=>{
+      const response=await getUserVideos(user.username);
+      setVideos(response.data.data.ChannelVideos)
+    }
+    if(user?.username?.length){fetchUserVideos()}
+  },[currentPart,user.username])
+
   const uploadNewVideo=async()=>{
     setUpload(true)
     try{
@@ -29,19 +43,24 @@ const Dashboard = () => {
       console.log(e)
     }finally{setUpload(false)}
   }
+
   function setEmpty(){
     setTitle("")
     setDescription("")
     setVideo(null)
     setThumbnail(null)
-
     if(videoRef.current){videoRef.current.value=""}
     if(thumbnailRef.current){thumbnailRef.current.value=""}
   }
+
+  const handleDeleteVideo = (id) => {
+    setVideos((prev) => prev.filter((video) => video._id !== id));
+  };
+
   return (
     <div className='dashboard'>
       <div className='profile'>
-        <img className='coverImage' src={user?.coverImage} alt="user cover image" />
+        <img className='coverImage' src={user?.coverImage?.length} alt="user cover image" />
         <div className='info'>
           <img className='userAvatar' src={user?.avatar} alt="User Avatar"/>
           <div className='username'>{user.username}</div>
@@ -71,11 +90,11 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='options'>
-        <button className='uploadVideo active'>Upload Video</button>
-        <button className='myvideos'>My videos</button>
+        <button onClick={()=>{setCurrentPart(true)}} className='uploadVideo'>Upload Video</button>
+        <button onClick={()=>{setCurrentPart(false)}} className='myvideos'>My videos</button>
         <NavLink className='playlist-button' to={`/playlist/user/${user._id}`}><button className='playlists'>Playlists</button></NavLink>
       </div>
-      <div className='upload-video'>
+      {currentPart?<div className='upload-video'>
         {!upload?<form onSubmit={(e)=>{e.preventDefault();uploadNewVideo()}}>
           <p>Title</p>
           <input type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
@@ -91,7 +110,14 @@ const Dashboard = () => {
         <div className='uploading'>
           the video is uploading...
         </div>}
-      </div>
+      </div>:
+      <div className='user-videos'>
+        {videos?.length ? <div>
+          {videos.map((v)=>(
+            <DahsboardVideo key={v._id} video={v} onDelete={handleDeleteVideo}/>
+          ))}
+        </div>:<div>No Videos Uploaded Yet</div>}
+      </div>}
     </div>
   )
 }

@@ -1,0 +1,113 @@
+.dashboardVideo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* vertical center */
+  background-color: #1e293b;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.dashboardVideo:hover {
+  background-color: #243248;
+}
+
+/* LEFT SECTION */
+.dachboard-info {
+  display: flex;
+  align-items: center; /* ensures vertical alignment */
+  gap: 20px;
+}
+
+.dashboardthumbnail {
+  display: flex;
+  align-items: center;
+}
+
+.dashboardthumbnail img {
+  width: 170px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* VIDEO INFO */
+.video-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical centering */
+  gap: 8px;
+}
+
+.video-info div:first-child {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.addition-info {
+  display: flex;
+  gap: 14px;
+  font-size: 14px;
+  color: #cbd5e1; /* soft gray */
+}
+
+.addition-info p {
+  margin: 0;
+}
+
+/* RIGHT OPTIONS */
+.options {
+  display: flex;
+  align-items: center; /* vertical center */
+  gap: 16px;
+}
+
+/* PUBLISH BUTTON */
+.public button {
+  background-color: #6366f1; /* custom purple */
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.public button:hover {
+  background-color: #4f46e5;
+}
+
+/* EDIT BUTTON */
+.editVideo button {
+  background-color: #334155;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.editVideo button:hover {
+  background-color: #475569;
+}
+
+/* DELETE BUTTON */
+.deleteVideo button {
+  background-color: #7f1d1d;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: #fecaca;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.deleteVideo button:hover {
+  background-color: #991b1b;
+}
