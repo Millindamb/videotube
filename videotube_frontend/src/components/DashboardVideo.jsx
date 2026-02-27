@@ -60,19 +60,40 @@ const DahsboardVideo = ({video,onDelete}) => {
 
   return (
     <div className="dashboardVideo">
-      {canEdit ? <div className='updateUserVideo'>
-        <form onSubmit={(e)=>{e.preventDefault();updateCurrentVideo();}}>
-          <p>title</p>
-          <input type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
-          <p>description</p>
-          <input type="text" required value={description} onChange={(e)=>{setDescription(e.target.value)}}/>
-          <p>thumbnail</p>
-          <input type="file" required onChange={(e)=>{setThumbnailFilePath(e.target.files[0])}}/>
-          <br />
-          <button type='submit'>Update</button>
-          <button type='button' onClick={()=>{setCanEdit(false)}}>Cancle</button>
-        </form>
-      </div>:
+      {canEdit ? (
+        <div className="updateUserVideo">
+          <form onSubmit={(e)=>{ e.preventDefault(); updateCurrentVideo();}} className="editForm">
+            <h3>Edit Video</h3>
+            <div className="formGroup">
+              <label>Title</label>
+              <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+            </div>
+
+            <div className="formGroup">
+              <label>Description</label>
+              <textarea value={description} onChange={(e)=>setDescription(e.target.value)} rows="3" required/>
+            </div>
+
+            <div className="formGroup">
+              <label>Thumbnail</label>
+              <input type="file" onChange={(e)=>setThumbnailFilePath(e.target.files[0])}/>
+            </div>
+
+            <div className="editButtons">
+              <button type="submit" className="updateBtn">
+                Update
+              </button>
+              <button
+                type="button"
+                className="cancelBtn"
+                onClick={()=>setCanEdit(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      ) : 
       <>
         <div className='dachboard-info'>
           <div className='dashboardthumbnail'>

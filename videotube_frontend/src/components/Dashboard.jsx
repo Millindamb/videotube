@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import {NavLink} from "react-router-dom"
+import {NavLink,useLocation} from "react-router-dom"
 import { getDashboardStats, getUserVideos, uploadVideo } from '../api/Dashboard'
 import VideoCard from './VideoCard'
 import './dashboard.css'
@@ -16,6 +16,7 @@ const Dashboard = () => {
   const [user,setUser]=useState({})
   const videoRef=useRef(null)
   const thumbnailRef=useRef(null)
+  const location=useLocation()
 
   useEffect(()=>{
     const fetchDashboardData=async()=>{
@@ -53,9 +54,17 @@ const Dashboard = () => {
     if(thumbnailRef.current){thumbnailRef.current.value=""}
   }
 
-  const handleDeleteVideo = (id) => {
-    setVideos((prev) => prev.filter((video) => video._id !== id));
+  const handleDeleteVideo=(id)=>{
+    setVideos((prev)=>prev.filter((video)=>video._id!==id));
   };
+
+   useEffect(()=>{
+    if(location.hash){
+      const el=document.querySelector(location.hash);
+      if(el){
+        el.scrollIntoView({ behavior: "smooth" });
+      }}
+  }, [location]);
 
   return (
     <div className='dashboard'>
@@ -95,7 +104,7 @@ const Dashboard = () => {
         <NavLink className='playlist-button' to={`/playlist/user/${user._id}`}><button className='playlists'>Playlists</button></NavLink>
       </div>
       {currentPart?<div className='upload-video'>
-        {!upload?<form onSubmit={(e)=>{e.preventDefault();uploadNewVideo()}}>
+        {!upload?<form id="upload-section" onSubmit={(e)=>{e.preventDefault();uploadNewVideo()}}>
           <p>Title</p>
           <input type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
           <p>Description</p>
