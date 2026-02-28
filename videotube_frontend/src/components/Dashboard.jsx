@@ -69,7 +69,7 @@ const Dashboard = () => {
   return (
     <div className='dashboard'>
       <div className='profile'>
-        <img className='coverImage' src={user?.coverImage?.length} alt="user cover image" />
+        <img className='coverImage' src={user?.coverImage} alt="user cover image" />
         <div className='info'>
           <img className='userAvatar' src={user?.avatar} alt="User Avatar"/>
           <div className='username'>{user.username}</div>

@@ -3,8 +3,10 @@ import { isAuthContext } from '../context/context';
 import { getChannelInfo } from '../api/watchChannel'
 import { toggelSubscribe } from '../api/Togglesub';
 import './channelInfo.css'
+import { useNavigate } from 'react-router-dom';
 
 const ChannelInfo = ({owner}) => {
+  const navigate=useNavigate();
   const values=useContext(isAuthContext)
   const [channelInfo,setChannelInfo]=useState({});
   const [loading,setLoading]=useState(true);
@@ -39,8 +41,8 @@ const ChannelInfo = ({owner}) => {
   if (!channelInfo) return <div>Channel not found</div>;
   return (
     <div className='channel-info'>
-      <div className='image'><img src={channelInfo.avatar} alt="" /></div>
-      <div className='info'><p className='chn-name'>{channelInfo.fullName}</p><p className='chn-sub'>{channelInfo.subscribersCount} subscribers</p></div>
+      <div onClick={()=>{navigate(`/channel/${channelInfo.username}`)}} className='image'><img src={channelInfo.avatar} alt="" /></div>
+      <div onClick={()=>{navigate(`/channel/${channelInfo.username}`)}} className='info'><p className='chn-name'>{channelInfo.username}</p><p className='chn-sub'>{channelInfo.subscribersCount} subscribers</p></div>
       {values.isLoggedIn && !checkCurrentUser() && <div className='sub-button'>
        {channelInfo.isSubscribed ? <button onClick={()=>{toggleSub()}}>unsubscribe</button> : <button onClick={()=>{toggleSub()}}>subscribe</button>}
       </div>}

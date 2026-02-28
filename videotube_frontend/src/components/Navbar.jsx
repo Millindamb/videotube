@@ -88,7 +88,7 @@ const Navbar=({ showSidebar,setShowSidebar })=>{
             </div>
            {dropdownOpen &&(
               <div className="dropdown">
-                <div onClick={()=>{navigate("/profile");setDropdownOpen(false);}}>
+                <div onClick={()=>{navigate(`/channel/${user.username}`);setDropdownOpen(false);}}>
                   Profile
                 </div>
                 <div onClick={()=>{navigate("/dashboard");setDropdownOpen(false);}}>
