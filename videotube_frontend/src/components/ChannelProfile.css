@@ -14,6 +14,11 @@
 }
 
 /* ===== COVER IMAGE ===== */
+.channel-info{
+  display: flex;
+  flex-direction: flex;
+  flex-direction: column;
+}
 
 .channel-coverImage {
   width: 100%;
@@ -93,7 +98,7 @@
 .subscribe-button {
   position: absolute;
   right: 20px;
-  bottom: 20px;
+  bottom: 50px;
 }
 
 .subscribe-button button {

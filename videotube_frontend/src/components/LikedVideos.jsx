@@ -20,18 +20,17 @@ const LikedVideos = () => {
       }
     }
     fetchVideos()
-  },[user?._id])
+  },[user])
 
   return (
     <div className="liked-videos-container">
       {loading ? (<p className="status-text">Loading...</p>)
       : videos.length===0?(<p className="status-text">No videos liked yet</p>) : 
-      (<div className="videos">
-          {videos.map((v)=>(
-            <VideoCard key={v.video._id} video={v.video} />
+      <div className="videos">
+        {videos?.filter((v)=>v?.video?._id).map((v)=>(
+            <VideoCard key={v.video._id} video={v.video}/>
           ))}
-        </div>
-      )}
+      </div>}
     </div>
   )
 }

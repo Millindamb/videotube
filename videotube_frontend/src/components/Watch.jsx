@@ -8,17 +8,19 @@ import { getComments } from '../api/GetComment';
 import VideoCard from '../components/VideoCard';
 import { useParams } from 'react-router-dom';
 import Comment from './Comment';
+import { checkIsVideoLiked } from '../api/Likes';
 
 const Watch = () => {
   const values=useContext(isAuthContext)
   const {videoId}=useParams()
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos]=useState([]);
   const [video,setVideo]=useState(null);
   const [loading,setLoading]=useState(true);
   const [page,setPage]=useState(1);
   const [limit,setLimit]=useState(10);
   const [comments,setComments]=useState([]);
   const [hasNextPage,setHasNextPage]=useState(true);
+  let [isLiked,setIsLiked]=useState(false);
 
   useEffect(()=>{
   if(!videoId)return;
@@ -60,6 +62,17 @@ const Watch = () => {
   },[]);
 
   useEffect(()=>{
+    try{
+      checkIsVideoLiked(videoId)
+      .then((res)=>{
+        setIsLiked(res.data.data);
+      }).catch((e)=>{console.log(e)})
+    }catch(e){
+      console.log(e)
+    }
+  },[isLiked])
+
+  useEffect(()=>{
     if(!videoId)return;
     const fetchComments=async()=>{
       if(!values.isLoggedIn){return;}
@@ -92,7 +105,13 @@ const Watch = () => {
             <source src={video.videoFile} type='video/mp4' />
             Your browser does not support the video tag.
           </video>
-          <h2>{video.title}</h2>
+          <div>
+            <h2>{video.title}</h2>
+            <div className='watch-buttons'>
+              <button>{isLiked?"Unlike":"Like"}</button>
+              <button>Add to Playlist</button>
+            </div>
+          </div>
         </div>
 
         <div className='channel-info'>

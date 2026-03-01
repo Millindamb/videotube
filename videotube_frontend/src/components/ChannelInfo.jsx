@@ -46,9 +46,6 @@ const ChannelInfo = ({owner}) => {
       {values.isLoggedIn && !checkCurrentUser() && <div className='sub-button'>
        {channelInfo.isSubscribed ? <button onClick={()=>{toggleSub()}}>unsubscribe</button> : <button onClick={()=>{toggleSub()}}>subscribe</button>}
       </div>}
-      {values.isLoggedIn && <div className='like-video'>
-       <button>like <i className="fa-regular fa-thumbs-up"></i></button>
-      </div>}
     </div>
   )
 }

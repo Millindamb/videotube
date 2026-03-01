@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { getChannelsVideo } from '../api/GetChannelsVideo'
 import VideoCard from './VideoCard'
 import './SubscriptionsChannelVideos.css'
+import { useNavigate } from 'react-router-dom'
 
 const SubscriptionsChannelVideos = ({channelId,channelAvatar,channelUserName}) => {
     const [videos,setVideos]=useState([])
+    const navigate=useNavigate()
     useEffect(()=>{
         const fetchVideo=async()=>{
             try{
@@ -18,7 +20,7 @@ const SubscriptionsChannelVideos = ({channelId,channelAvatar,channelUserName}) =
     },[channelId])
   return (
     <div>
-        <div className='channelInfo'>
+        <div onClick={()=>{navigate(`/channel/${channelUserName}`)}} className='channelInfo'>
             <div className='ch-img'><img src={channelAvatar}/></div>
             <div className='ch-username'>{channelUserName}</div>
         </div>
