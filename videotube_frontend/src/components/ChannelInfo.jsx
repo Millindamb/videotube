@@ -1,53 +1,91 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { isAuthContext } from '../context/context';
-import { getChannelInfo } from '../api/watchChannel'
-import { toggelSubscribe } from '../api/Togglesub';
-import './channelInfo.css'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from "react";
+import { isAuthContext } from "../context/context";
+import { getChannelInfo } from "../api/watchChannel";
+import { toggelSubscribe } from "../api/Togglesub";
+import "./channelInfo.css";
+import { useNavigate } from "react-router-dom";
 
-const ChannelInfo = ({owner}) => {
-  const navigate=useNavigate();
-  const values=useContext(isAuthContext)
-  const [channelInfo,setChannelInfo]=useState({});
-  const [loading,setLoading]=useState(true);
+const ChannelInfo = ({ owner }) => {
+  const navigate = useNavigate();
+  const { isLoggedIn } = useContext(isAuthContext);
 
-  const toggleSub=async()=>{
-    try{
-      // const res=await toggelSubscribe(owner);
-    }catch(e){
+  const [channelInfo, setChannelInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const isCurrentUser = user?._id === owner;
+
+  const toggleSub = async () => {
+    try {
+      await toggelSubscribe(owner);
+
+      setChannelInfo((prev) => {
+        const newState = !prev.isSubscribed;
+
+        return {
+          ...prev,
+          isSubscribed: newState,
+          subscribersCount: newState
+            ? prev.subscribersCount + 1
+            : prev.subscribersCount - 1,
+        };
+      });
+    } catch (e) {
       console.log(e);
     }
-  }
+  };
 
-  const checkCurrentUser=async()=>{
-    const user = JSON.parse(localStorage.getItem("user"));
-    return user._id===owner;
-  }
-
-  useEffect(()=>{
-    const fetchInfo=async()=>{
-      try{
-        const data=await getChannelInfo(owner);
-        setChannelInfo(data.data.data)
-      }catch(e){
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const res = await getChannelInfo(owner);
+        setChannelInfo(res.data.data);
+        console.log(res.data.data)
+      } catch (e) {
         console.log(e);
-      }finally{
-        setLoading(false)
+      } finally {
+        setLoading(false);
       }
-    }
+    };
+
     fetchInfo();
-  },[owner])
+  }, [owner]);
+
   if (loading) return <div>Loading...</div>;
   if (!channelInfo) return <div>Channel not found</div>;
-  return (
-    <div className='channel-info'>
-      <div onClick={()=>{navigate(`/channel/${channelInfo.username}`)}} className='image'><img src={channelInfo.avatar} alt="" /></div>
-      <div onClick={()=>{navigate(`/channel/${channelInfo.username}`)}} className='info'><p className='chn-name'>{channelInfo.username}</p><p className='chn-sub'>{channelInfo.subscribersCount} subscribers</p></div>
-      {values.isLoggedIn && !checkCurrentUser() && <div className='sub-button'>
-       {channelInfo.isSubscribed ? <button onClick={()=>{toggleSub()}}>unsubscribe</button> : <button onClick={()=>{toggleSub()}}>subscribe</button>}
-      </div>}
-    </div>
-  )
-}
 
-export default ChannelInfo
+  return (
+    <div className="channel-info">
+      <div
+        className="channel-left"
+        onClick={() => navigate(`/channel/${channelInfo.username}`)}
+      >
+        <img
+          className="channel-avatar"
+          src={channelInfo.avatar}
+          alt="avatar"
+        />
+
+        <div className="channel-text">
+          <p className="chn-name">{channelInfo.username}</p>
+          <p className="chn-sub">
+            {channelInfo.subscribersCount} subscribers
+          </p>
+        </div>
+      </div>
+
+      {isLoggedIn && !isCurrentUser && (
+        <button
+          onClick={toggleSub}
+          className={
+            channelInfo.isSubscribed ? "subscribed-btn" : "subscribe-btn"
+          }
+        >
+          {channelInfo.isSubscribed ? "Unsubscribe" : "Subscribe"}
+        </button>
+      )}
+    </div>
+  );
+};
+
+export default ChannelInfo;

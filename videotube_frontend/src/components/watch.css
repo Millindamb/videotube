@@ -26,6 +26,8 @@ body.light-mode .video-section {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 /* ===== Video Player Section ===== */
@@ -41,6 +43,134 @@ body.light-mode .video-section {
   font-size: 20px;
   font-weight: 600;
   color: inherit;
+}
+
+/* ===== Watch Buttons ===== */
+
+.watch-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.watch-buttons button {
+  background-color: #334155;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.watch-buttons button:hover {
+  background-color: #475569;
+}
+
+body.light-mode .watch-buttons button {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+body.light-mode .watch-buttons button:hover {
+  background-color: #cbd5f5;
+}
+
+/* ===== Add To Playlist Popup ===== */
+
+.addToPlaylist {
+  position: absolute;
+  margin-top: 10px;
+  width: 320px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: #1e293b;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.4);
+  z-index: 100;
+}
+
+body.light-mode .addToPlaylist {
+  background: white;
+}
+
+/* ===== Playlist Item ===== */
+
+.playlist-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.25s;
+}
+
+.playlist-info:hover {
+  background-color: #334155;
+  cursor: pointer;
+}
+
+body.light-mode .playlist-info:hover {
+  background-color: #f1f5f9;
+}
+
+.pl-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.description {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+body.light-mode .description {
+  color: #475569;
+}
+
+.total {
+  font-size: 12px;
+}
+
+/* ===== Cancel Button ===== */
+
+.pl-cancle {
+  font-size: 18px;
+  color: #f87171;
+  padding-left: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.pl-cancle:hover {
+  transform: scale(1.2);
+}
+
+/* ===== Message Notification ===== */
+
+.watch-buttons div {
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #1e293b;
+  color: white;
+}
+
+/* ===== Channel Info Section ===== */
+
+.channel-info {
+  margin-top: 18px;
+  margin-bottom: 12px;
 }
 
 /* ===== Video Description Section ===== */
@@ -70,9 +200,37 @@ body.light-mode .video-info {
   background-color: #1e293b;
 }
 
+body.light-mode .video-comments {
+  background-color: #e2e8f0;
+}
+
 .video-comments h3 {
   margin-bottom: 16px;
 }
+
+/* ===== Load More Button ===== */
+
+.video-comments button {
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: #334155;
+  color: white;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.video-comments button:hover {
+  background: #475569;
+}
+
+body.light-mode .video-comments button {
+  background: #cbd5f5;
+  color: #0f172a;
+}
+
+/* ===== More Videos Sidebar ===== */
 
 .more-videos > * {
   background: #1e293b;
@@ -92,4 +250,45 @@ body.light-mode .more-videos > * {
 
 body.light-mode .more-videos > *:hover {
   background-color: #f1f5f9;
+}
+
+/* ===== Scrollbar Styling ===== */
+
+.more-videos::-webkit-scrollbar,
+.addToPlaylist::-webkit-scrollbar {
+  width: 6px;
+}
+
+.more-videos::-webkit-scrollbar-thumb,
+.addToPlaylist::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 10px;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 1000px) {
+  .video-section {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .more-videos {
+    max-height: none;
+  }
+
+  .video-playing video {
+    height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .watch-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .addToPlaylist {
+    width: 100%;
+  }
 }

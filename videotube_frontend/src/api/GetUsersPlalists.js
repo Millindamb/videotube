@@ -37,3 +37,8 @@ export const removeVideoFromPlaylist=async(playlistId,videoId)=>{
     const res=await api.patch(`/playlist/${playlistId}/remove/${videoId}`)
     return res
 }
+
+export const addVideToPlaylist=async(playlistId,videoId)=>{
+    const res=await api.patch(`/playlist/${playlistId}/add/${videoId}`)
+    return res
+}

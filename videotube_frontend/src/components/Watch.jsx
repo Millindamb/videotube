@@ -8,9 +8,10 @@ import { getComments } from '../api/GetComment';
 import VideoCard from '../components/VideoCard';
 import { useParams } from 'react-router-dom';
 import Comment from './Comment';
-import { checkIsVideoLiked } from '../api/Likes';
+import { checkIsVideoLiked,toggleVideoLike } from '../api/Likes';
+import { getUserPlaylists, addVideToPlaylist } from '../api/GetUsersPlalists';
 
-const Watch = () => {
+const Watch =()=>{
   const values=useContext(isAuthContext)
   const {videoId}=useParams()
   const [videos, setVideos]=useState([]);
@@ -20,7 +21,11 @@ const Watch = () => {
   const [limit,setLimit]=useState(10);
   const [comments,setComments]=useState([]);
   const [hasNextPage,setHasNextPage]=useState(true);
+  const [playlists,setPlaylists]=useState([])
+  const [showplay,setShowplay]=useState(false)
   let [isLiked,setIsLiked]=useState(false);
+  const [msg,setMsg]=useState(null);
+  const user=JSON.parse(localStorage.getItem('user'))
 
   useEffect(()=>{
   if(!videoId)return;
@@ -62,15 +67,19 @@ const Watch = () => {
   },[]);
 
   useEffect(()=>{
-    try{
-      checkIsVideoLiked(videoId)
-      .then((res)=>{
+    if(!videoId) return;
+
+    const fetchLikeStatus=async()=>{
+      try{
+        const res=await checkIsVideoLiked(videoId);
         setIsLiked(res.data.data);
-      }).catch((e)=>{console.log(e)})
-    }catch(e){
-      console.log(e)
-    }
-  },[isLiked])
+      }catch(e){
+        console.log(e);
+      }
+    };
+
+    fetchLikeStatus();
+  },[videoId]);
 
   useEffect(()=>{
     if(!videoId)return;
@@ -94,6 +103,36 @@ const Watch = () => {
   }, [videoId]);
   
   const loadMore=()=>{if(hasNextPage){setPage(prev=>prev+1);}};
+
+  const handleLike=async()=>{
+    try{
+      const res=await toggleVideoLike(videoId);
+      setIsLiked(prev=>!prev);
+    }catch(e){
+      console.log(e);
+    }
+  };
+
+  const getPlaylists=async()=>{
+    try{
+      const response=await getUserPlaylists(user._id)
+      setShowplay(true)
+      setPlaylists(response.data.data)
+    }catch(e){
+      console.log(e)
+    }
+  }
+
+  const addVideoToPl=async(playlistId)=>{
+    try{
+      const response=await addVideToPlaylist(playlistId,videoId)
+      setMsg(response.data.message)
+      setShowplay(false)
+      setTimeout(()=>setMsg(null),5000);
+    }catch(e){
+      console.log(e);
+    }   
+  }
   
   if (loading) return <div>Loading...</div>;
   if (!video) return <div>Video not found</div>;
@@ -107,10 +146,35 @@ const Watch = () => {
           </video>
           <div>
             <h2>{video.title}</h2>
-            <div className='watch-buttons'>
-              <button>{isLiked?"Unlike":"Like"}</button>
-              <button>Add to Playlist</button>
-            </div>
+            {values.isLoggedIn && <div className='watch-buttons'>
+              <button onClick={handleLike}>
+                {isLiked ? "Unlike" : "Like"}
+              </button>
+              <button onClick={()=>getPlaylists()}>Add to Playlist</button>
+              {msg!==null && <div>{msg}</div>}
+              {showplay && (
+                <div className='addToPlaylist'>
+                  {playlists.length===0?(<p>No playlists found</p>):(
+                    <div>
+                      <div className='pl-cancle' onClick={(e)=>{e.stopPropagation();setShowplay(false);}}><i className="fa-solid fa-xmark"></i></div>
+                      {playlists.map((pl)=>(
+                        <div key={pl._id} onClick={()=>addVideoToPl(pl._id)} className='playlist-info'>
+                          <div className='pl-info'>
+                            <div className='name'>{pl.name}</div>
+                            <p className='description'>{pl.description}</p>
+                            {pl.videos.length===0 ? (
+                              <p>No videos in the playlist yet</p>
+                              ):(
+                              <p className='total'>Total videos: {pl.videos.length}</p>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>}
           </div>
         </div>
 
@@ -140,7 +204,7 @@ const Watch = () => {
       </div>
       <div className='more-videos'>
         {videos.length===0 ? (<p>No videos found</p>):(
-            videos.map((v)=>(v._id!=videoId && <VideoCard key={v._id} video={v}/>))
+            videos.map((v)=>(v._id!==videoId && <VideoCard key={v._id} video={v}/>))
           )}
         </div>
     </div>
