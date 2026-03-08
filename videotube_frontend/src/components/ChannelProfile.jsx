@@ -6,10 +6,12 @@ import VideoCard from './VideoCard'
 import './ChannelProfile.css'
 import { getUserPlaylists } from '../api/GetUsersPlalists'
 import { getTweets } from '../api/Tweet'
+import { toggelSubscribe } from '../api/Togglesub'
 
 const ChannelProfile=()=>{
     const {channelName}=useParams()
     const [channelInfo,setChannelInfo]=useState({})
+    const [isSubscribed,setIsSubscribed]=useState(null)
     const [videos,setVideos]=useState([])
     const user=JSON.parse(localStorage.getItem('user'))
     const [currentPart,setCurrentPart]=useState(1)
@@ -20,6 +22,7 @@ const ChannelProfile=()=>{
         const fetchChannelInfo=async()=>{
             try{
                 const response=await getChannelInfo(channelName)
+                setIsSubscribed(response.data.data.isSubscribed)
                 setChannelInfo(response.data.data)
             }catch(e){
                 console.log(e)
@@ -93,6 +96,20 @@ const ChannelProfile=()=>{
     return "Just now";
     };
 
+    const toggleSub=async()=>{
+        try {
+          await toggelSubscribe(channelInfo._id);
+          setChannelInfo((prev)=>({...prev,
+            subscribersCount:isSubscribed
+              ? prev.subscribersCount-1
+              : prev.subscribersCount+1,}));
+    
+          setIsSubscribed((prev)=>!prev);
+        } catch(e){
+          console.log(e);
+        }
+      };
+
     return (
     <div className='channel'>
         <div className='about-channel'>
@@ -112,8 +129,8 @@ const ChannelProfile=()=>{
 
                 {user && channelInfo._id !== user._id && (
                     <div className="subscribe-button">
-                    <button>
-                        {channelInfo.isSubscribed ? "Unsubscribe" : "Subscribe"}
+                    <button onClick={()=>toggleSub()}>
+                        {isSubscribed ? "Unsubscribe" : "Subscribe"}
                     </button>
                     </div>
                 )}

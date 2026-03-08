@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { isAuthContext } from "../context/context";
-import { getChannelInfo } from "../api/watchChannel";
+import { getChannelInfo, isChannelSubscribed } from "../api/watchChannel";
 import { toggelSubscribe } from "../api/Togglesub";
 import "./channelInfo.css";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ const ChannelInfo = ({ owner }) => {
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(isAuthContext);
 
+  const [isSubscribed, setIsSubscribed] = useState(null);
   const [channelInfo, setChannelInfo] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -19,28 +20,38 @@ const ChannelInfo = ({ owner }) => {
     try {
       await toggelSubscribe(owner);
 
-      setChannelInfo((prev) => {
-        const newState = !prev.isSubscribed;
+      setChannelInfo((prev) => ({
+        ...prev,
+        subscribersCount: isSubscribed
+          ? prev.subscribersCount - 1
+          : prev.subscribersCount + 1,
+      }));
 
-        return {
-          ...prev,
-          isSubscribed: newState,
-          subscribersCount: newState
-            ? prev.subscribersCount + 1
-            : prev.subscribersCount - 1,
-        };
-      });
+      setIsSubscribed((prev) => !prev);
     } catch (e) {
       console.log(e);
     }
   };
 
   useEffect(() => {
-    const fetchInfo = async () => {
+    const fetchChannel = async () => {
       try {
         const res = await getChannelInfo(owner);
-        setChannelInfo(res.data.data);
-        console.log(res.data.data)
+        const data = res.data.data;
+
+        setChannelInfo(data);
+
+        if (isLoggedIn && !isCurrentUser) {
+          const subRes = await isChannelSubscribed(owner);
+
+          // IMPORTANT: read correct value
+          const subscribed =
+            subRes?.data?.data?.isSubscribed ??
+            subRes?.data?.data ??
+            false;
+
+          setIsSubscribed(!!subscribed);
+        }
       } catch (e) {
         console.log(e);
       } finally {
@@ -48,8 +59,8 @@ const ChannelInfo = ({ owner }) => {
       }
     };
 
-    fetchInfo();
-  }, [owner]);
+    fetchChannel();
+  }, [owner, isLoggedIn,isSubscribed]);
 
   if (loading) return <div>Loading...</div>;
   if (!channelInfo) return <div>Channel not found</div>;
@@ -74,14 +85,12 @@ const ChannelInfo = ({ owner }) => {
         </div>
       </div>
 
-      {isLoggedIn && !isCurrentUser && (
+      {isLoggedIn && !isCurrentUser && isSubscribed !== null && (
         <button
           onClick={toggleSub}
-          className={
-            channelInfo.isSubscribed ? "subscribed-btn" : "subscribe-btn"
-          }
+          className={isSubscribed ? "subscribed-btn" : "subscribe-btn"}
         >
-          {channelInfo.isSubscribed ? "Unsubscribe" : "Subscribe"}
+          {isSubscribed ? "Unsubscribe" : "Subscribe"}
         </button>
       )}
     </div>
