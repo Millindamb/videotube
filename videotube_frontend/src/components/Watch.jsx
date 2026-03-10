@@ -137,9 +137,9 @@ const Watch =()=>{
   if (loading) return <div>Loading...</div>;
   if (!video) return <div>Video not found</div>;
   return (
-    <div className='video-section'>
-      <div className='about-current-video'>
-        <div className='video-playing'>
+    <div className='watch-section'>
+      <div className='about-current-watch'>
+        <div className='watch-playing'>
           <video key={videoId} width="80%" height="500" controls>
             <source src={video.videoFile} type='video/mp4' />
             Your browser does not support the video tag.
@@ -153,19 +153,19 @@ const Watch =()=>{
               <button onClick={()=>getPlaylists()}>Add to Playlist</button>
               {msg!==null && <div>{msg}</div>}
               {showplay && (
-                <div className='addToPlaylist'>
+                <div className='watch-addToPlaylist'>
                   {playlists.length===0?(<p>No playlists found</p>):(
                     <div>
-                      <div className='pl-cancle' onClick={(e)=>{e.stopPropagation();setShowplay(false);}}><i className="fa-solid fa-xmark"></i></div>
+                      <div className='addToPlaylist-cancle' onClick={(e)=>{e.stopPropagation();setShowplay(false);}}><i className="fa-solid fa-xmark"></i></div>
                       {playlists.map((pl)=>(
                         <div key={pl._id} onClick={()=>addVideoToPl(pl._id)} className='playlist-info'>
-                          <div className='pl-info'>
-                            <div className='name'>{pl.name}</div>
-                            <p className='description'>{pl.description}</p>
+                          <div className='playlist-info'>
+                            <div className='watch-name'>{pl.name}</div>
+                            <p className='watch-description'>{pl.description}</p>
                             {pl.videos.length===0 ? (
                               <p>No videos in the playlist yet</p>
                               ):(
-                              <p className='total'>Total videos: {pl.videos.length}</p>
+                              <p className='watch-total'>Total videos: {pl.videos.length}</p>
                             )}
                           </div>
                         </div>
@@ -178,16 +178,16 @@ const Watch =()=>{
           </div>
         </div>
 
-        <div className='channel-info'>
+        <div className='watch-channel-info'>
           <ChannelInfo owner={video.owner}/>
         </div>
 
-        <div className='video-info'>
+        <div className='watch-info'>
           <p>{video.views} views • {new Date(video.createdAt).toLocaleDateString()}</p>
           <hr />
           <p>{video.description}</p>
         </div>
-        {values.isLoggedIn && <div className='video-comments'>
+        {values.isLoggedIn && <div className='watch-video-comments'>
           <h3>Comments</h3>
 
           {comments.length===0?(<p>No comments yet</p>):(
@@ -202,7 +202,7 @@ const Watch =()=>{
         </div>}
 
       </div>
-      <div className='more-videos'>
+      <div className='watch-more-videos'>
         {videos.length===0 ? (<p>No videos found</p>):(
             videos.map((v)=>(v._id!==videoId && <VideoCard key={v._id} video={v}/>))
           )}

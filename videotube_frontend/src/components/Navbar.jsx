@@ -41,15 +41,15 @@ const Navbar=({ showSidebar,setShowSidebar })=>{
   return(
     <header className="navbar">
       <div className="nav-left">
-        <button onClick={()=>setShowSidebar(!showSidebar)} className="menu-btn" >
+        <button onClick={()=>setShowSidebar(!showSidebar)} className="nav-menu-btn" >
           <i className="fa-solid fa-bars"></i>
         </button>
 
         <Link to="/" className="logo">
-          <div className="logo-box">
+          <div className="nav-logo-box">
             <i className="fa-solid fa-video"></i>
           </div>
-          <span className="logo-text">videoTube</span>
+          <span className="nav-logo-text">videoTube</span>
         </Link>
       </div>
 
@@ -62,12 +62,12 @@ const Navbar=({ showSidebar,setShowSidebar })=>{
 
       <div className="nav-right">
        {values.isLoggedIn &&(
-          <button onClick={()=>navigate("/dashboard#upload-section")} className="icon-btn" title="Upload">
+          <button onClick={()=>navigate("/dashboard#upload-section")} className="nav-icon-btn" title="Upload">
             <i className="fa-solid fa-upload"></i>
           </button>
         )}
 
-        <button className="icon-btn" onClick={toggleTheme} title="Toggle Theme">
+        <button className="nav-icon-btn" onClick={toggleTheme} title="Toggle Theme">
          {darkMode ?(<i className="fa-solid fa-sun"></i>) 
          :(<i className="fa-solid fa-moon"></i>)}
         </button>
@@ -75,7 +75,7 @@ const Navbar=({ showSidebar,setShowSidebar })=>{
        {values.isLoggedIn &&(
           <div className="notification">
             <p>0</p>
-            <button className="icon-btn" title="Notifications">
+            <button className="nav-icon-btn" title="Notifications">
               <i className="fa-solid fa-bell"></i>
             </button>
           </div>          
@@ -83,11 +83,11 @@ const Navbar=({ showSidebar,setShowSidebar })=>{
 
        {values.isLoggedIn &&(
           <div onMouseEnter={()=>setDropdownOpen(true)} onMouseLeave={()=>{setDropdownOpen(false)}}>
-            <div className="avatar">
+            <div className="nav-avatar">
               <img src={user.avatar} alt="" />
             </div>
            {dropdownOpen &&(
-              <div className="dropdown">
+              <div className="nav-dropdown">
                 <div onClick={()=>{navigate(`/channel/${user.username}`);setDropdownOpen(false);}}>
                   Profile
                 </div>
@@ -105,7 +105,7 @@ const Navbar=({ showSidebar,setShowSidebar })=>{
         )}
         
        {!values.isLoggedIn &&(
-          <button className="signin-btn" onClick={()=>navigate("/users/login")}>Sign In </button>)}
+          <button className="nav-signin-btn" onClick={()=>navigate("/users/login")}>Sign In </button>)}
       </div>
     </header>
   );

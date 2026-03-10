@@ -26,15 +26,12 @@ const Home = () => {
   if (error) return <p className="status error">{error}</p>;
 
   return (
-    <div className="home">
-      <h1 className="title">Videos</h1>
-
-      <div className="video-grid">
-        {videos.length === 0 ? (
-          <p>No videos found</p>
-        ) : (
-          videos.map((v) => (
-            <VideoCard key={v._id} video={v} />
+    <div className="home-section">
+      <div className="home-video-grid">
+        {videos.length===0 ? (
+          <p>No videos found</p>):(
+          videos.map((v)=>(
+            <VideoCard key={v._id} video={v}/>
           ))
         )}
       </div>

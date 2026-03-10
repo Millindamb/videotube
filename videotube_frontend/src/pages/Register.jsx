@@ -45,13 +45,13 @@ const Register = () => {
           <p>Join Videotube and start Streaming</p>
         </div>
         <div className="register-input">
-          <div className="image-upload">
+          <div className="register-image-upload">
             <label>Upload Profile Picture</label>
             <input type="file" accept="image/*" required onChange={(e)=>setProfilePicture(e.target.files[0])}/>
             <label>Upload Cover Image</label>
             <input type="file" accept="image/*" required onChange={(e)=>{setCoverPicture(e.target.files[0])}}/>
           </div>
-          <form className="details" onSubmit={handleRegister}>
+          <form className="register-details" onSubmit={handleRegister}>
             <label>Name</label>
             <input type="text" placeholder="Enter your name" autoComplete='Name' required onChange={(e)=>{setName(e.target.value)}}/>
 
@@ -70,7 +70,7 @@ const Register = () => {
               <button type="submit" disabled={isLoading} style={{cursor:isLoading ? "not-allowed":"pointer",opacity: isLoading ? 0.5:1,}}> {isLoading ? "Creating Account...":"Create Account"}</button>
             </div>
           </form>
-          <div className='desc'>
+          <div className='register-desc'>
             <p>Already have an account? <Link to="/users/login" className='login'>Sign-in</Link></p>
           </div>
         </div>

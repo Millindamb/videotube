@@ -1,22 +1,27 @@
+/* ===== Page Center ===== */
+
 .register-center {
-  min-height: calc(100vh - 60px);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 30px 20px;
-  background: #0f172a;
+  background: #121311;
 }
+
+/* ===== Register Card ===== */
 
 .register-box {
   width: 100%;
   max-width: 500px;
-  background: #1e293b;
+  background: #1c1d1b;
   padding: 40px 30px;
   border-radius: 16px;
-  border: 1px solid #334155;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-  transition: 0.3s ease;
+  border: 1px solid rgba(255,96,68,0.2);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
 }
+
+/* ===== Header ===== */
 
 .register-text {
   text-align: center;
@@ -27,13 +32,16 @@
   margin: 0;
   font-size: 24px;
   font-weight: 600;
+  color: #ffffff;
 }
 
 .register-text p {
   margin-top: 6px;
   font-size: 14px;
-  color: #94a3b8;
+  color: #9ca3af;
 }
+
+/* ===== Layout ===== */
 
 .register-input {
   display: flex;
@@ -41,57 +49,63 @@
   gap: 20px;
 }
 
-.image-upload {
+/* ===== Image Upload ===== */
+
+.register-image-upload {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.image-upload label {
+.register-image-upload label {
   font-size: 14px;
-  color: #cbd5e1;
+  color: #d1d5db;
 }
 
-.image-upload input {
+.register-image-upload input {
   padding: 8px;
-  background: #0f172a;
-  border: 1px solid #334155;
+  background: #121311;
+  border: 1px solid rgba(255,96,68,0.2);
   border-radius: 8px;
-  color: #f1f5f9;
+  color: #e5e7eb;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.25s;
 }
 
-.image-upload input:hover {
-  border-color: #06b6d4;
+.register-image-upload input:hover {
+  border-color: #ff6044;
 }
 
-.details {
+/* ===== Form Inputs ===== */
+
+.register-details {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.details label {
+.register-details label {
   font-size: 14px;
-  color: #cbd5e1;
+  color: #d1d5db;
 }
 
-.details input {
+.register-details input {
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid #334155;
-  background: #0f172a;
-  color: #f1f5f9;
+  border: 1px solid rgba(255,96,68,0.2);
+  background: #121311;
+  color: #e5e7eb;
   outline: none;
-  transition: 0.3s;
+  transition: 0.25s;
   font-size: 14px;
 }
 
-.details input:focus {
-  border-color: #06b6d4;
-  box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+.register-details input:focus {
+  border-color: #ff6044;
+  box-shadow: 0 0 8px rgba(255,96,68,0.35);
 }
+
+/* ===== Button ===== */
 
 .register-btn {
   margin-top: 10px;
@@ -102,59 +116,66 @@
   padding: 12px;
   border-radius: 10px;
   border: none;
-  background: linear-gradient(45deg, #06b6d4, #7c3aed);
+  background: #ff6044;
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.25s ease;
 }
 
 .register-btn button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 8px 22px rgba(255,96,68,0.4);
 }
 
-body.light-mode .register-center {
-  background: #f8fafc;
+.register-btn button:disabled {
+  opacity: 0.6;
 }
 
-body.light-mode .register-box {
-  background: white;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
+/* ===== Footer ===== */
 
-body.light-mode .details input,
-body.light-mode .image-upload input {
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  color: #0f172a;
-}
-
-body.light-mode .register-text p {
-  color: #64748b;
-}
-
-.desc {
+.register-desc {
   text-align: center;
   font-size: 14px;
-  color: #94a3b8;
+  color: #9ca3af;
 }
 
 .login {
-  font-style: none;
-  color: #06b6d4;
-  cursor: pointer;
+  color: #ff6044;
   font-weight: 500;
+  text-decoration: none;
+  margin-left: 4px;
 }
 
-.error{
-  border: 1px solid #334155;
-  background-color: rgb(252, 251, 251);
-  height: 30px;
-  border-radius: 5px;
+.login:hover {
+  text-decoration: underline;
+}
+
+/* ===== Error Message ===== */
+
+.error {
+  border: 1px solid rgba(255,96,68,0.4);
+  background: rgba(255,96,68,0.1);
+  color: #ff6044;
+  height: 35px;
+  border-radius: 6px;
   margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 13px;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 500px) {
+
+  .register-box {
+    padding: 30px 22px;
+  }
+
+  .register-text h2 {
+    font-size: 22px;
+  }
+
 }

@@ -1,19 +1,18 @@
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
-  background-color: #0f172a;
+  background-color: #121313;
   color: #f1f5f9;
 }
 
 body.light-mode {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: #ffffff;
+  color: #121313;
 }
 
 /* NAVBAR */
 .navbar {
   overflow: visible;
-
   position: sticky;
   top: 0;
   z-index: 9999;
@@ -22,7 +21,7 @@ body.light-mode {
   align-items: center;
   justify-content: space-between;
   padding: 0 25px;
-  background: #0f172a;
+  background: #121313;
   border-bottom: 1px solid #1e293b;
 }
 
@@ -31,13 +30,14 @@ body.light-mode .navbar {
   border-bottom: 1px solid #e2e8f0;
 }
 
+/* LEFT SECTION */
 .nav-left {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.menu-btn {
+.nav-menu-btn {
   background: none;
   border: none;
   color: inherit;
@@ -45,6 +45,7 @@ body.light-mode .navbar {
   cursor: pointer;
 }
 
+/* LOGO */
 .logo {
   display: flex;
   align-items: center;
@@ -53,10 +54,10 @@ body.light-mode .navbar {
   color: inherit;
 }
 
-.logo-box {
+.nav-logo-box {
   width: 32px;
   height: 32px;
-  background: linear-gradient(45deg, #06b6d4, #7c3aed);
+  background: #ff6044;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,7 +65,7 @@ body.light-mode .navbar {
   color: white;
 }
 
-.logo-text {
+.nav-logo-text {
   font-weight: 600;
   font-size: 18px;
 }
@@ -79,9 +80,9 @@ body.light-mode .navbar {
 .nav-search input {
   flex: 1;
   padding: 8px 14px;
-  border: 1px solid #1e293b;
+  border: 1px solid #121313;
   border-right: none;
-  border-radius: 20px 0 0 20px;
+  border-radius: 5px 0 0 5px;
   background: #1e293b;
   color: white;
   outline: none;
@@ -90,26 +91,28 @@ body.light-mode .navbar {
 body.light-mode .nav-search input {
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  color: #0f172a;
+  color: #121313;
 }
 
 .nav-search button {
   padding: 8px 14px;
   border: 1px solid #1e293b;
   border-left: none;
-  border-radius: 0 20px 20px 0;
-  background: #06b6d4;
+  border-radius: 0 5px 5px 0;
+  background: #ff6044;
   color: white;
   cursor: pointer;
 }
 
+/* RIGHT SECTION */
 .nav-right {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.icon-btn {
+/* ICON BUTTONS */
+.nav-icon-btn {
   background: none;
   border: none;
   font-size: 18px;
@@ -119,69 +122,69 @@ body.light-mode .nav-search input {
   border-radius: 50%;
 }
 
-.icon-btn:hover {
+.nav-icon-btn:hover {
   background: #1e293b;
 }
 
-body.light-mode .icon-btn:hover {
+body.light-mode .nav-icon-btn:hover {
   background: #e2e8f0;
 }
 
-.signin-btn {
+/* SIGN IN BUTTON */
+.nav-signin-btn {
   padding: 6px 14px;
-  border-radius: 20px;
+  border-radius: 5px;
   border: none;
-  background: linear-gradient(45deg, #06b6d4, #7c3aed);
+  background: #ff6044;
   color: white;
   cursor: pointer;
+  font-weight: 500;
 }
 
-.notification{
+/* NOTIFICATION */
+.notification {
   display: flex;
   flex-direction: row-reverse;
 }
 
-.notification button{
+.notification button {
   padding: 0;
 }
 
-.notification p{
+.notification p {
   height: 15px;
   width: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  background: #ff6044;
   color: white;
+  font-size: 10px;
   position: relative;
   right: 8px;
   bottom: 5px;
 }
 
-/* PROFILE */
-.profile {
-  position: relative;
-}
-
-.avatar {
+/* AVATAR */
+.nav-avatar {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: none;
   cursor: pointer;
 }
 
-.avatar img{
-  height: 34px;
+.nav-avatar img {
   width: 34px;
+  height: 34px;
   border-radius: 50%;
 }
 
 /* DROPDOWN */
-.dropdown {
+.nav-dropdown {
   position: absolute;
-  right: 0;
-  top: 50px;
+  right: 25px;
+  top: 55px;
   width: 160px;
   background: #1e293b;
   border-radius: 8px;
@@ -191,36 +194,37 @@ body.light-mode .icon-btn:hover {
   animation: fadeIn 0.15s ease-in-out;
 }
 
-body.light-mode .dropdown {
+body.light-mode .nav-dropdown {
   background: #ffffff;
-  color: #0f172a;
+  color: #121313;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-.dropdown div {
+.nav-dropdown div {
   padding: 10px 16px;
   cursor: pointer;
 }
 
-.dropdown div:hover {
+.nav-dropdown div:hover {
   background: #334155;
 }
 
-body.light-mode .dropdown div:hover {
+body.light-mode .nav-dropdown div:hover {
   background: #f1f5f9;
 }
 
-.dropdown hr {
+.nav-dropdown hr {
   border: 0;
   height: 1px;
   background: #334155;
   margin: 6px 0;
 }
 
-body.light-mode .dropdown hr {
+body.light-mode .nav-dropdown hr {
   background: #e2e8f0;
 }
 
+/* ANIMATION */
 @keyframes fadeIn {
   from {
     opacity: 0;
