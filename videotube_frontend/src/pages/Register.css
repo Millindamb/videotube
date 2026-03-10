@@ -179,3 +179,54 @@
   }
 
 }
+
+/* ===== Light Mode: Register Page ===== */
+body.light-mode .register-center {
+  background: #f8fafc;
+}
+
+body.light-mode .register-box {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+body.light-mode .register-text h2 {
+  color: #0f172a;
+}
+
+body.light-mode .register-text p,
+body.light-mode .register-desc {
+  color: #64748b;
+}
+
+body.light-mode .register-image-upload label,
+body.light-mode .register-details label {
+  color: #0f172a;
+}
+
+body.light-mode .register-image-upload input,
+body.light-mode .register-details input {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+}
+
+body.light-mode .register-details input:focus,
+body.light-mode .register-image-upload input:hover {
+  border-color: #ff6044;
+  box-shadow: 0 0 8px rgba(255,96,68,0.35);
+}
+
+body.light-mode .register-btn button {
+  background: #ff6044;
+}
+
+body.light-mode .register-btn button:hover {
+  box-shadow: 0 6px 18px rgba(255,96,68,0.35);
+}
+
+body.light-mode .login,
+body.light-mode .register {
+  color: #ff6044;
+}

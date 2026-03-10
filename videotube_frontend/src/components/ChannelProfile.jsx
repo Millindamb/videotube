@@ -111,45 +111,45 @@ const ChannelProfile=()=>{
       };
 
     return (
-    <div className='channel'>
+    <div className='channel-profile'>
         <div className='about-channel'>
-            <div className="channel-info">
-                <div className="channel-coverImage">
+            <div className="channel-pro-info">
+                <div className="channel-pro-coverImage">
                     <img src={channelInfo.coverImage} alt="" />
                 </div>
-                <div className="info">
-                    <img className="channel-avatar" src={channelInfo.avatar} alt="User Avatar"/>
+                <div className="channel-pro-info">
+                    <img className="channel-pro-avatar" src={channelInfo.avatar} alt="User Avatar"/>
                     <div>
-                        <div className="channel-name">{channelInfo.username}</div>
-                        <div className="channel-subscribers">
+                        <div className="channel-pro-name">{channelInfo.username}</div>
+                        <div className="channel-pro-subscribers">
                             {channelInfo.subscribersCount} subscribers
                         </div>
                     </div>
                 </div>
 
                 {user && channelInfo._id !== user._id && (
-                    <div className="subscribe-button">
+                    <div className="channel-pro-subscribe-button">
                     <button onClick={()=>toggleSub()}>
                         {isSubscribed ? "Unsubscribe" : "Subscribe"}
                     </button>
                     </div>
                 )}
             </div>
-            <div className='channel-option'>
+            <div className='channel-pro-option'>
                 <button onClick={()=>setCurrentPart(1)}>Video</button>
                 <button onClick={()=>setCurrentPart(2)}>Tweets</button>
                 <button onClick={()=>setCurrentPart(3)}>Playlist</button>
             </div>
-            {currentPart==1 && <div className='channel-video'>
+            {currentPart==1 && <div className='channel-pro-video'>
                 {videos.length ? videos.map((v)=>{return<VideoCard key={v._id} video={v}/>}):<div>Channel Have No Videos</div>}
             </div>}
 
-            {currentPart==2 && <div className='channel-tweets'>
+            {currentPart==2 && <div className='channel-pro-tweets'>
                 {!tweets.length?<div>no Tweets avaliable</div>:
                     tweets.map((t)=>{return(<div key={t._id}>
-                        <div className='user-info'>
+                        <div className='channel-pro-user-info'>
                         <img src={user.avatar} alt="" />
-                        <div className='name'>{user.username}</div>
+                        <div className='channel-pro-name'>{user.username}</div>
                         <div>{formatTimeAgo(t.createdAt)}</div>
                         </div>
                         <div>{t.content}</div>
@@ -157,18 +157,18 @@ const ChannelProfile=()=>{
                 }
             </div>}
 
-            {currentPart==3 && <div className='channel-playlists'>
+            {currentPart==3 && <div className='channel-pro--playlists'>
                 {playlists.length===0 ? (<p>No playlists found</p>) : (
                     playlists.map((pl)=>(
-                    <div key={pl._id} className='playlist-info'>
-                        <div className='playlist-controls'>
-                            <div className='name'>{pl.name}</div>
-                            <p className='description'>{pl.description}</p>          
+                    <div key={pl._id} className='channel-pro-playlist-info'>
+                        <div className='channel-pro-playlist-controls'>
+                            <div className='channel-pro-pl-name'>{pl.name}</div>
+                            <p className='channel-pro-pl-description'>{pl.description}</p>          
                         </div>
                         {pl.videos.length===0?(<p>No videos in the playlist yet</p>):(
                         <div>
-                            <div className='total'>Total videos: {pl.videos.length}</div>
-                            <div className='videos'>{pl.videos.map((v)=>{return<VideoCard key={v._id} video={v}/>})}</div>
+                            <div className='channel-pro-total'>Total videos: {pl.videos.length}</div>
+                            <div className='channel-pro-videos'>{pl.videos.map((v)=>{return<VideoCard key={v._id} video={v}/>})}</div>
                         </div>)}
                     </div>
                     ))

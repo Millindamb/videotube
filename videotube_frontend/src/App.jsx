@@ -1,7 +1,6 @@
 import './app.css'
 import Home from './pages/Home'
 import Login from './pages/Login'
-import Logout from './pages/Logout.jsx'
 import Register from './pages/Register.jsx'
 import { Watch,Subscriptions,LikedVideos,Tweets,Settings,Playlist,SpecificPlaylist,Dashboard,ChannelProfile } from './components/index.js'
 import MainLayout from './layouts/MainLayout'
@@ -30,7 +29,6 @@ const App = () => {
       element:<AnotherLayout/>,
       children:[
         {path:'/users/login',element:<Login/>},
-        {path:'users/logout',element:<Logout/>},
         {path:'users/register',element:<Register/>}
       ]
     },

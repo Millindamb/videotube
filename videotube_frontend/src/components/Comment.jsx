@@ -25,14 +25,14 @@ const Comment = ({avatar,username,date,content}) => {
     };
     return (
     <div className='comment'>
-        <div className='part1'>
+        <div className='comment-part1'>
             <img src={avatar}/>
         </div>
-        <div className='part2'>
-            <div className='userInfo'><p className='name'>{username}</p><p className='date'>{formatTimeAgo(date)}</p></div>
-            <div className='content'>{content}</div>
+        <div className='comment-part2'>
+            <div className='comment-userInfo'><p className='comment-name'>{username}</p><p className='comment-date'>{formatTimeAgo(date)}</p></div>
+            <div className='comment-content'>{content}</div>
         </div>
-        <div className="like"><button><i className="fa-regular fa-thumbs-up"></i></button></div>
+        <div className="comment-like"><button><i className="fa-regular fa-thumbs-up"></i></button></div>
     </div>
   )
 }

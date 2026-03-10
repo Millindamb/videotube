@@ -48,8 +48,8 @@ const Playlist = () => {
   },[user?._id,create])
 
   return (
-    <div className='playlist'>
-      <div className='create-button' onClick={()=>{setCreate(!create)}}><button>Create Playlist</button></div>
+    <div className='playlists'>
+      <div className='playlists-create-button' onClick={()=>{setCreate(!create)}}><button>Create Playlist</button></div>
       {create && <form onSubmit={createUserPlaylist} className='add_playlist'>
         <div className='playlist-inputs'>
           <p>Name</p>
@@ -61,25 +61,25 @@ const Playlist = () => {
       </form>}
       {loading ? (<p>Loading...</p>) : playlists.length===0 ? (<p>No playlists found</p>) : (
         playlists.map((pl)=>(
-          <div key={pl._id} className='playlist-info'>
-            <div className='playlist-controls'>
-              <div className='name'>{pl.name}</div>
-              <p className='description'>{pl.description}</p>          
-              <div className='buttons'>
+          <div key={pl._id} className='playlists-info'>
+            <div className='playlists-controls'>
+              <div className='playlists-name'>{pl.name}</div>
+              <p className='playlists-description'>{pl.description}</p>          
+              <div className='playlists-buttons'>
                 <NavLink to={`/playlist/${pl._id}`}>
-                  <button className='edit'>Edit <i className="fa-solid fa-pen"></i></button>
+                  <button className='playlists-edit'>Edit <i className="fa-solid fa-pen"></i></button>
                 </NavLink>
-                <button className='delete' onClick={()=>{deleteUsersPlaylist(pl._id)}}>Delete <i className="fa-solid fa-delete-left"></i></button>
+                <button className='playlists-delete' onClick={()=>{deleteUsersPlaylist(pl._id)}}>Delete <i className="fa-solid fa-delete-left"></i></button>
                 <NavLink to={`/playlist/${pl._id}`}>
-                  <button className='more'>More <i className="fa-solid fa-arrow-right"></i></button>
+                  <button className='playlists-more'>More <i className="fa-solid fa-arrow-right"></i></button>
                 </NavLink>
               </div>
             </div>
 
             {pl.videos.length===0?(<p>No videos in the playlist yet</p>):(
             <div>
-              <div className='total'>Total videos: {pl.videos.length}</div>
-              <div className='videos'>{pl.videos.map((v)=>{return<VideoCard key={v._id} video={v}/>})}</div>
+              <div className='playlists-total'>Total videos: {pl.videos.length}</div>
+              <div className='playlists-videos'>{pl.videos.map((v)=>{return<VideoCard key={v._id} video={v}/>})}</div>
             </div>)}
           </div>
         ))

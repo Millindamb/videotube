@@ -66,3 +66,27 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Light Mode: Home Page ===== */
+body.light-mode .home-section {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+body.light-mode .home-video-grid > * {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+body.light-mode .home-video-grid > *:hover {
+  background: rgba(255,96,68,0.06);
+  border-color: rgba(255,96,68,0.25);
+}
+
+body.light-mode .status {
+  color: #64748b;
+}
+
+body.light-mode .error {
+  color: #ef4444;
+}

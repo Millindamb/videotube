@@ -1,118 +1,183 @@
-/* Main container */
-.playlist {
+/* ===== Main Container ===== */
+.specific-playlist {
   max-width: 900px;
   margin: 40px auto;
   padding: 20px;
   font-family: Arial, Helvetica, sans-serif;
+  color: #e5e7eb;
+  background-color: #121311;
 }
 
-/* Edit box section */
-.editbox {
+/* ===== Edit Box Section ===== */
+.specific-pl-editbox {
   background-color: #1e293b;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 30px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* Playlist name */
-.name {
+/* Playlist Name & Description */
+.specific-pl-name {
   font-size: 28px;
   font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.specific-pldescription {
+  font-size: 16px;
+  color: #9ca3af;
   margin-bottom: 10px;
 }
 
-/* Playlist description */
-.description {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 15px;
-}
-
-/* Form styling */
-.editbox form {
+/* ===== Form Styling ===== */
+.specific-pl-editbox form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.editbox input {
+.specific-pl-editbox input {
   padding: 10px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #334155;
+  background-color: #0f172a;
+  color: #e5e7eb;
   font-size: 14px;
-}
-
-.editbox input:focus {
   outline: none;
-  border-color: #007bff;
+  transition: 0.25s;
 }
 
-/* Buttons */
-button {
+.specific-pl-editbox input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 6px rgba(79, 70, 229, 0.3);
+}
+
+/* ===== Buttons ===== */
+.specific-pl-editbox > button,
+.specific-pl-editbox form button {
   padding: 8px 14px;
   border-radius: 6px;
   border: none;
   cursor: pointer;
   font-size: 14px;
-  transition: 0.2s ease-in-out;
-}
-
-/* Edit button */
-.editbox > button {
   background-color: #4f46e5;
   color: white;
-  margin-top: 10px;
+  transition: 0.25s ease-in-out;
 }
 
-/* Update button */
-form button {
-  background-color: #4f46e5;
-  color: white;
+.specific-pl-editbox form button:hover,
+.specific-pl-editbox > button:hover {
+  background-color: #6366f1;
 }
 
-form button:hover {
-  background-color: #1e7e34;
-}
-
-/* Video section */
-.vdo {
+/* ===== Video Section ===== */
+.specific-pl-video {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-.vdo>*{
-    width: 250px;
-}
-
 /* Each video wrapper */
-.vdo > div {
+.specific-pl-video > div {
+  width: 250px;
   background-color: #1e293b;
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* Remove button */
-.vdo button {
+/* Remove Video Button */
+.specific-pl-video > div button {
   background-color: #dc3545;
   color: white;
-  margin-top: 10px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s;
 }
 
-.vdo button:hover {
+.specific-pl-video > div button:hover {
   background-color: #a71d2a;
 }
 
+/* ===== Empty & Loading Text ===== */
+.specific-pl-video > div:empty,
+.specific-pl-video > div.loading {
+  color: #9ca3af;
+  font-size: 14px;
+  text-align: center;
+}
 
-/* Responsive */
+/* ===== Responsive ===== */
 @media (max-width: 600px) {
-  .playlist {
+  .specific-playlist {
     padding: 10px;
   }
 
-  .name {
+  .specific-pl-name {
     font-size: 22px;
   }
+
+  .specific-pl-video > div {
+    width: 100%;
+  }
+}
+
+/* ===== Light Mode ===== */
+body.light-mode .specific-playlist {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+body.light-mode .specific-pl-editbox {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+body.light-mode .specific-pldescription {
+  color: #64748b;
+}
+
+body.light-mode .specific-pl-editbox input {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+}
+
+body.light-mode .specific-pl-editbox input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 6px rgba(79, 70, 229, 0.3);
+}
+
+body.light-mode .specific-pl-editbox > button,
+body.light-mode .specific-pl-editbox form button {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+body.light-mode .specific-pl-editbox form button:hover,
+body.light-mode .specific-pl-editbox > button:hover {
+  background-color: #6366f1;
+}
+
+body.light-mode .specific-pl-video > div {
+  background-color: #ffffff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+  border: 1px solid #e2e8f0;
+}
+
+body.light-mode .specific-pl-video > div button {
+  background-color: #ef4444;
+}
+
+body.light-mode .specific-pl-video > div button:hover {
+  background-color: #f87171;
 }

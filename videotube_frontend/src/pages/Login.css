@@ -147,3 +147,49 @@
   }
 
 }
+
+/* ===== Light Mode: Login Page ===== */
+body.light-mode .login-center {
+  background: #f8fafc;
+}
+
+body.light-mode .login-box {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+body.light-mode .login-text h2 {
+  color: #0f172a;
+}
+
+body.light-mode .login-text p,
+body.light-mode .login-input p,
+body.light-mode .desc {
+  color: #64748b;
+}
+
+body.light-mode .login-input input {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+}
+
+body.light-mode .login-input input:focus {
+  border-color: #ff6044;
+  box-shadow: 0 0 8px rgba(255,96,68,0.35);
+}
+
+body.light-mode .login-buttons button {
+  background: #ff6044;
+}
+
+body.light-mode .login-buttons button:hover {
+  box-shadow: 0 6px 18px rgba(255,96,68,0.35);
+}
+
+body.light-mode .error {
+  border: 1px solid rgba(255,96,68,0.3);
+  background: rgba(255,96,68,0.1);
+  color: #ef4444;
+}

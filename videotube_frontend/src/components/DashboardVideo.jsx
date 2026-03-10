@@ -61,25 +61,25 @@ const DahsboardVideo = ({video,onDelete}) => {
   return (
     <div className="dashboardVideo">
       {canEdit ? (
-        <div className="updateUserVideo">
+        <div className="dashboardVideo-updateUserVideo">
           <form onSubmit={(e)=>{ e.preventDefault(); updateCurrentVideo();}} className="editForm">
             <h3>Edit Video</h3>
-            <div className="formGroup">
+            <div className="dashboardVideo-formGroup">
               <label>Title</label>
               <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required/>
             </div>
 
-            <div className="formGroup">
+            <div className="dashboardVideo-formGroup">
               <label>Description</label>
               <textarea value={description} onChange={(e)=>setDescription(e.target.value)} rows="3" required/>
             </div>
 
-            <div className="formGroup">
+            <div className="dashboardVideo-formGroup">
               <label>Thumbnail</label>
               <input type="file" onChange={(e)=>setThumbnailFilePath(e.target.files[0])}/>
             </div>
 
-            <div className="editButtons">
+            <div className="dashboardVideo-editButtons">
               <button type="submit" className="updateBtn">
                 Update
               </button>
@@ -95,22 +95,22 @@ const DahsboardVideo = ({video,onDelete}) => {
         </div>
       ) : 
       <>
-        <div className='dachboard-info'>
-          <div className='dashboardthumbnail'>
+        <div className='dashboardVideo-info'>
+          <div className='dashboardVideo-thumbnail'>
             <img src={video.thumbnail} alt={video.title}/>
           </div>
-          <div className='video-info'>
+          <div className='dashboardVideo-info'>
             <div>{video.title}</div>
-            <div className='addition-info'><p>{video.views} views</p><p>{formatTimeAgo(video.createdAt)}</p></div>
+            <div className='dashboardVideo-addition-info'><p>{video.views} views</p><p>{formatTimeAgo(video.createdAt)}</p></div>
           </div>
         </div>
-        <div className='options'>
-          <div className='public'>
+        <div className='dashboardVideo-options'>
+          <div className='dashboardVideo-public'>
             <p></p>
             <button onClick={()=>{toggleVideoPublish()}}>{pub?"Make Private":"Make Public"}</button>
           </div>
-          <div className='editVideo'><button onClick={()=>{setCanEdit(true)}}><i className="fa-solid fa-pen"></i></button></div>
-          <div className='deleteVideo' onClick={()=>{deleteUserVideo()}}><button>DELETE</button></div>
+          <div className='dashboardVideo-editVideo'><button onClick={()=>{setCanEdit(true)}}><i className="fa-solid fa-pen"></i></button></div>
+          <div className='dashboardVideo-deleteVideo' onClick={()=>{deleteUserVideo()}}><button>DELETE</button></div>
         </div>
       </>}
     </div>

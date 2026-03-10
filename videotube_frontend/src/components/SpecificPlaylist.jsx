@@ -49,8 +49,8 @@ const SpecificPlaylist = () => {
       fetchPlaylistData()
     },[playlistid])
     return (
-    <div className='playlist'>
-      <div className='editbox'>
+    <div className='specific-playlist'>
+      <div className='specific-pl-editbox'>
         {canEdit?
           <form onSubmit={updatePlaylistdetails}>
             <p>Name</p>
@@ -61,13 +61,13 @@ const SpecificPlaylist = () => {
           </form>
           :
           <div>
-            <div className='name'>{name}</div>
-            <div className='description'>{description}</div>
+            <div className='specific-pl-name'>{name}</div>
+            <div className='specific-pldescription'>{description}</div>
           </div>
         }
         <button onClick={()=>{setCanEdit(!canEdit)}}>edit</button>
       </div>
-      <div className='vdo'>
+      <div className='specific-pl-video'>
         {loading ? (
             <div>Loading...</div>
           ) : playlist?.videos?.length === 0 ? (

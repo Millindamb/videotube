@@ -19,15 +19,15 @@ const SubscriptionsChannelVideos = ({channelId,channelAvatar,channelUserName}) =
         fetchVideo()
     },[channelId])
   return (
-    <div>
+    <div className='subscribed-channel'>
         <div onClick={()=>{navigate(`/channel/${channelUserName}`)}} className='channelInfo'>
-            <div className='ch-img'><img src={channelAvatar}/></div>
-            <div className='ch-username'>{channelUserName}</div>
+            <div className='subscribed-ch-img'><img src={channelAvatar}/></div>
+            <div className='subscribed-ch-username'>{channelUserName}</div>
         </div>
-        <div className='hd'>
+        <div className='subscribed-hd'>
             Latest Videos
         </div>
-        <div className='channel-videos'>
+        <div className='subscribed-channel-videos'>
             {videos.length===0?<div className='fd'>No Video Found</div>:videos.map((v)=>{return <VideoCard key={v._id} video={v}/>})}
         </div>
     </div>

@@ -73,8 +73,8 @@ const Tweets = () => {
   };
 
   return (
-    <div>
-      <div className='createTweet'>
+    <div className='tweet'>
+      <div className='tweet-createTweet'>
         <button onClick={()=>{setCreate(!create)}}>Create Tweet</button>
         {create && <form onSubmit={()=>{createNewTweet()}} className='tweet-inputs'>
           <p>Content</p>
@@ -96,7 +96,7 @@ const Tweets = () => {
             </div>
           </div>
           :<div key={t._id}>
-            <div className='user-info'>
+            <div className='tweet-user-info'>
               <img src={user.avatar} alt="" />
               <div className='name'>{user.username}</div>
               <div>{formatTimeAgo(t.createdAt)}</div>

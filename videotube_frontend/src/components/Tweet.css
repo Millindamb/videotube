@@ -1,161 +1,266 @@
-/* Main Tweets Container */
+/* ===== Main Tweets Container ===== */
+
+.tweet {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px 20px;
+  background: #121313;
+  color: #f1f5f9;
+}
+
 .Tweets {
   max-width: 900px;
-  margin: 30px auto;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  font-family: Arial, Helvetica, sans-serif;
+  gap: 22px;
 }
 
-/* Create Tweet Section */
-.createTweet {
+/* ===== Create Tweet Section ===== */
+
+.tweet-createTweet {
   max-width: 900px;
-  margin: 30px auto;
+  margin: 0 auto 25px auto;
   padding: 20px;
-  background-color: #1e293b;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  background: #1c1d1b;
+  border-radius: 12px;
+  border: 1px solid rgba(255,96,68,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* General Button Style */
-button {
-  padding: 8px 14px;
+/* Create Tweet Button */
+
+.tweet-createTweet > button {
+  background: #ff6044;
+  color: white;
+  padding: 10px 16px;
   border-radius: 6px;
   border: none;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 14px;
-  transition: 0.2s ease-in-out;
+  transition: all 0.25s ease;
 }
 
-/* Create Button */
-.createTweet > button {
-  background-color: #4f46e5;
-  color: white;
+.tweet-createTweet > button:hover {
+  background: #ff735a;
+  transform: translateY(-2px);
 }
 
-.createTweet > button:hover {
-  background-color: #4338ca;
-}
+/* ===== Tweet Form Inputs ===== */
 
-/* Tweet Form */
 .tweet-inputs {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 15px;
+}
+
+.tweet-inputs p {
+  font-size: 14px;
+  color: #9ca3af;
 }
 
 .tweet-inputs input {
   padding: 10px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(255,96,68,0.15);
+  background: #121313;
+  color: #f1f5f9;
   font-size: 14px;
+  outline: none;
+  transition: all 0.25s ease;
 }
 
 .tweet-inputs input:focus {
-  outline: none;
-  border-color: #4f46e5;
+  border-color: #ff6044;
+  box-shadow: 0 0 6px rgba(255,96,68,0.3);
 }
 
-/* Individual Tweet Card */
+/* ===== Tweet Card ===== */
+
 .Tweets > div {
-  background-color: #1e293b;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-  color: white;
+  background: #1c1d1b;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,96,68,0.12);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  transition: all 0.25s ease;
 }
 
-/* User Info Section */
-.user-info {
+.Tweets > div:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,96,68,0.35);
+  background: rgba(255,96,68,0.06);
+}
+
+/* ===== User Info ===== */
+
+.tweet-user-info {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.user-info img {
+.tweet-user-info img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.user-info .name {
-  font-weight: bold;
-  font-size: 16px;
+.tweet-user-info .name {
+  font-weight: 600;
+  font-size: 15px;
 }
 
-/* Tweet Content */
-.Tweets > div > div {
+.tweet-user-info div:last-child {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* ===== Tweet Content ===== */
+
+.Tweets > div > div:nth-child(2) {
   font-size: 15px;
   line-height: 1.4;
 }
 
-/* Tweet Buttons */
-.tweet-buttons {
+/* ===== Buttons ===== */
+
+.tweet-buttons,
+.buttons {
   display: flex;
   gap: 10px;
   margin-top: 5px;
 }
 
-/* Delete Button */
+button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Delete */
+
 .tweet-buttons button:first-child {
-  background-color: #dc3545;
+  background: #ff6044;
   color: white;
 }
 
 .tweet-buttons button:first-child:hover {
-  background-color: #a71d2a;
+  background: #ff735a;
 }
 
-/* Update Button */
+/* Update */
+
 .tweet-buttons button:last-child {
-  background-color: #4f46e5;
-  color: white;
+  background: #334155;
+  color: #f1f5f9;
 }
 
 .tweet-buttons button:last-child:hover {
-  background-color: #4338ca;
+  background: #475569;
 }
 
-/* Update Form Buttons */
-.buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
-}
+/* Confirm Button */
 
 .buttons button:first-child {
-  background-color: #4f46e5;
+  background: #ff6044;
   color: white;
 }
 
 .buttons button:first-child:hover {
-  background-color: #4338ca;
+  background: #ff735a;
 }
 
+/* Cancel */
+
 .buttons button:last-child {
-  background-color: #6c757d;
-  color: white;
+  background: #334155;
+  color: #f1f5f9;
 }
 
 .buttons button:last-child:hover {
-  background-color: #565e64;
+  background: #475569;
 }
 
-/* Responsive */
+/* ===== Update Input ===== */
+
+.Tweets input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,96,68,0.15);
+  background: #121313;
+  color: #f1f5f9;
+  outline: none;
+}
+
+.Tweets input:focus {
+  border-color: #ff6044;
+}
+
+/* ===== Light Mode ===== */
+
+body.light-mode .tweet {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+body.light-mode .tweet-createTweet,
+body.light-mode .Tweets > div {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+body.light-mode .Tweets > div:hover {
+  background: #fff7f5;
+  border-color: #ff6044;
+}
+
+body.light-mode .tweet-inputs input,
+body.light-mode .Tweets input {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+
+body.light-mode .tweet-user-info div:last-child {
+  color: #64748b;
+}
+
+body.light-mode .tweet-buttons button:last-child,
+body.light-mode .buttons button:last-child {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+body.light-mode .tweet-buttons button:last-child:hover,
+body.light-mode .buttons button:last-child:hover {
+  background: #cbd5e1;
+}
+
+/* ===== Responsive ===== */
+
 @media (max-width: 600px) {
-  .Tweets,
-  .createTweet {
-    padding: 15px;
+
+  .tweet {
+    padding: 20px 15px;
   }
 
-  .user-info img {
-    width: 35px;
-    height: 35px;
+  .tweet-user-info img {
+    width: 36px;
+    height: 36px;
   }
+
+  .Tweets > div {
+    padding: 14px;
+  }
+
 }

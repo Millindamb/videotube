@@ -34,7 +34,7 @@ const formatTimeAgo = (dateString) => {
 const VideoCard = ({ video }) => {
   return (
     <div className="video-card">
-      <NavLink to={`/watch/${video._id}`} className="thumbnail-wrapper">
+      <NavLink to={`/watch/${video._id}`} className="video-card-thumbnail">
         <img
           src={video.thumbnail}
           alt={video.title}
@@ -45,12 +45,12 @@ const VideoCard = ({ video }) => {
         </span>
       </NavLink>
 
-      <div className="video-info">
-        <NavLink to={`/watch/${video._id}`} className="video-title">
+      <div className="video-card-info">
+        <NavLink to={`/watch/${video._id}`} className="video-card-title">
           {video.title}
         </NavLink>
 
-        <p className="video-meta">
+        <p className="video-card-meta">
           {formatCount(video.views)} views •{" "}
           {formatTimeAgo(video.createdAt)}
         </p>

@@ -68,43 +68,43 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard'>
-      <div className='profile'>
-        <img className='coverImage' src={user?.coverImage} alt="user cover image" />
-        <div className='info'>
-          <img className='userAvatar' src={user?.avatar} alt="User Avatar"/>
-          <div className='username'>{user.username}</div>
+      <div className='dashboard-profile'>
+        <img className='dashboard-coverImage' src={user?.coverImage} alt="user cover image" />
+        <div className='dashboard-info'>
+          <img className='dashboard-userAvatar' src={user?.avatar} alt="User Avatar"/>
+          <div className='dashboard-username'>{user.username}</div>
         </div>
       </div>
       <p>Dashboard</p>
-      <div className='records'>
-        <div className='totalVideos'>
+      <div className='dashboard-records'>
+        <div className='dashboard-totalVideos'>
           <p>Total Videos</p>
           <p>{user.totalVideos}</p>
           <p><i className="fa-solid fa-video"></i></p>
         </div>
-        <div className='subscribers'>
+        <div className='dashboard-subscribers'>
           <p>Subscribers</p>
           <p>{user.totalSubscribers}</p>
           <p><i className="fa-solid fa-users"></i></p>
         </div>
-        <div className='totalLikes'>
+        <div className='dashboard-totalLikes'>
           <p>Total likes</p>
           <p>{user.totalLikes}</p>
           <p><i className="fa-solid fa-thumbs-up"></i></p>
         </div>
-        <div className='totalViews'>
+        <div className='dashboard-totalViews'>
           <p>Total Views</p>
           <p>{user.totalViews}</p>
           <p><i className="fa-solid fa-eye"></i></p>
         </div>
       </div>
-      <div className='options'>
-        <button onClick={()=>{setCurrentPart(true)}} className='uploadVideo'>Upload Video</button>
-        <button onClick={()=>{setCurrentPart(false)}} className='myvideos'>My videos</button>
-        <NavLink className='playlist-button' to={`/playlist/user/${user._id}`}><button className='playlists'>Playlists</button></NavLink>
+      <div className='dashboard-options'>
+        <button onClick={()=>{setCurrentPart(true)}} className='dashboard-uploadVideo'>Upload Video</button>
+        <button onClick={()=>{setCurrentPart(false)}} className='dashboard-myvideos'>My videos</button>
+        <NavLink className='playlist-button' to={`/playlist/user/${user._id}`}><button className='dashboard-playlists'>Playlists</button></NavLink>
       </div>
-      {currentPart?<div className='upload-video'>
-        {!upload?<form id="upload-section" onSubmit={(e)=>{e.preventDefault();uploadNewVideo()}}>
+      {currentPart?<div className='dashboard-upload-video'>
+        {!upload?<form id="dashboard-upload-section" onSubmit={(e)=>{e.preventDefault();uploadNewVideo()}}>
           <p>Title</p>
           <input type="text" required value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
           <p>Description</p>
@@ -116,11 +116,11 @@ const Dashboard = () => {
           <br/>
           <button type='submit'>Upload Video</button> <button type="button" onClick={setEmpty}>Cancel</button>
         </form>:
-        <div className='uploading'>
+        <div className='dashboard-uploading'>
           the video is uploading...
         </div>}
       </div>:
-      <div className='user-videos'>
+      <div className='dashboard-user-videos'>
         {videos?.length ? <div>
           {videos.map((v)=>(
             <DahsboardVideo key={v._id} video={v} onDelete={handleDeleteVideo}/>

@@ -1,253 +1,221 @@
-/* ===== ROOT CHANNEL PAGE ===== */
+/* ===== PAGE ROOT ===== */
 
-.channel {
-  background-color: #0f172a;
+.channel-profile {
+  background: #121313;
   min-height: 100vh;
-  color: #ffffff;
+  color: #f1f5f9;
   padding-bottom: 50px;
-  font-family: 'Inter', sans-serif;
 }
 
 .about-channel {
   width: 90%;
-  margin: 0 auto;
+  margin: auto;
+}
+/* ===== CHANNEL HEADER CARD ===== */
+
+.channel-pro-info {
+  background: #1c1d1b;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,96,68,0.12);
+  margin-top: 25px;
+  position: relative;
 }
 
 /* ===== COVER IMAGE ===== */
-.channel-info{
-  display: flex;
-  flex-direction: flex;
-  flex-direction: column;
-}
 
-.channel-coverImage {
+.channel-pro-coverImage {
   width: 100%;
-  height: 220px;
-  overflow: hidden;
-  border-radius: 16px;
-  margin-top: 20px;
+  height: 180px;
 }
 
-.channel-coverImage img {
+.channel-pro-coverImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* ===== CHANNEL INFO SECTION ===== */
+/* ===== INFO ROW ===== */
 
-/* ===== CHANNEL PROFILE CARD ===== */
-
-.channel-info {
-  background: #1e293b;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid #334155;
-  margin-top: 30px;
-  position: relative;
-}
-
-/* ===== COVER IMAGE ===== */
-
-.channel-coverImage img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-}
-
-/* ===== INFO SECTION (Avatar + Name) ===== */
-
-.info {
+.channel-pro-info > div:nth-child(2) {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 20px;
-  margin-top: -60px; /* Pull avatar upward */
+  gap: 16px;
+  padding: 60px 20px 20px 140px; /* space for avatar */
   position: relative;
-  z-index: 2;
 }
 
-/* ===== AVATAR ===== */
+/* ===== AVATAR (OVERLAP STYLE) ===== */
 
-.channel-avatar {
-  width: 110px;
-  height: 110px;
+.channel-pro-avatar {
+  position: absolute;
+  left: 25px;
+  top: -50px;
+
+  width: 100px;
+  height: 100px;
+
   border-radius: 50%;
-  border: 4px solid #1e293b;
+  border: 4px solid #1c1d1b;
+
   object-fit: cover;
-  background: #0f172a;
+  background: #121313;
+
+  transition: transform 0.25s ease;
+}
+
+.channel-pro-avatar:hover {
+  transform: scale(1.05);
 }
 
 /* ===== TEXT ===== */
 
-.channel-name {
+.channel-pro-name {
   font-size: 22px;
   font-weight: 600;
-  color: white;
 }
 
-.channel-subscribers {
+.channel-pro-subscribers {
   font-size: 14px;
-  color: #94a3b8;
-  margin-top: 4px;
-}
-
-/* ===== SUBSCRIBE BUTTON ALIGNMENT ===== */
-
-.subscribe-button {
-  position: absolute;
-  right: 20px;
-  bottom: 50px;
-}
-
-.subscribe-button button {
-  padding: 10px 22px;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.subscribe-button button:hover {
-  opacity: 0.85;
+  color: #9ca3af;
 }
 /* ===== SUBSCRIBE BUTTON ===== */
 
-.subscribe-button button {
-  padding: 10px 22px;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  border: none;
+.channel-pro-subscribe-button {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.channel-pro-subscribe-button button {
+  padding: 10px 20px;
   border-radius: 10px;
+  border: none;
+  background: #ff6044;
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.2s;
 }
 
-.subscribe-button button:hover {
-  opacity: 0.85;
+.channel-pro-subscribe-button button:hover {
+  opacity: 0.9;
 }
 
-/* ===== TABS ===== */
+/* ===== TAB OPTIONS ===== */
 
-.channel-option {
-  margin-top: 20px;
+.channel-pro-option {
   display: flex;
-  gap: 20px;
-  border-bottom: 1px solid #1e293b;
+  gap: 18px;
+  margin-top: 25px;
+  border-bottom: 1px solid #334155;
   padding-bottom: 10px;
 }
 
-.channel-option button {
+.channel-pro-option button {
   background: transparent;
   border: none;
-  color: #94a3b8;
-  font-size: 16px;
-  cursor: pointer;
+  color: #9ca3af;
+  font-size: 15px;
   padding: 8px 14px;
   border-radius: 8px;
-  transition: 0.2s ease;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.channel-option button:hover {
-  background-color: #1e293b;
-  color: #ffffff;
+.channel-pro-option button:hover {
+  background: #121313;
+  color: #f1f5f9;
 }
 
-/* Optional active effect */
-.channel-option button:focus {
-  background-color: #1e293b;
-  color: #ffffff;
-}
+/* ===== VIDEOS SECTION ===== */
 
-/* ===== VIDEO SECTION ===== */
-
-.channel-video {
+.channel-pro-video {
   margin-top: 30px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
 }
 
 /* ===== TWEETS SECTION ===== */
 
-.channel-tweets {
+.channel-pro-tweets {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.channel-tweets > div {
-  background-color: #1e293b;
-  padding: 20px;
+.channel-pro-tweets > div {
+  background: #121313;
   border-radius: 12px;
+  padding: 18px;
+  border: 1px solid #334155;
 }
 
-.user-info {
+/* ===== TWEET USER INFO ===== */
+
+.channel-pro-user-info {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.user-info img {
-  width: 40px;
-  height: 40px;
+.channel-pro-user-info img {
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.user-info .name {
+.channel-pro-user-info div:nth-child(2) {
   font-weight: 600;
 }
 
-.user-info div:last-child {
+.channel-pro-user-info div:last-child {
   font-size: 12px;
-  color: #94a3b8;
+  color: #9ca3af;
 }
 
 /* ===== PLAYLIST SECTION ===== */
 
-.channel-playlists {
+.channel-pro--playlists {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.playlist-info {
-  background-color: #1e293b;
-  padding: 25px;
-  border-radius: 16px;
+.channel-pro-playlist-info {
+  background: #121313;
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid #334155;
 }
 
-.playlist-controls {
-  margin-bottom: 15px;
+.channel-pro-playlist-controls {
+  margin-bottom: 14px;
 }
 
-.playlist-controls .name {
+.channel-pro-pl-name {
   font-size: 20px;
   font-weight: 600;
 }
 
-.playlist-controls .description {
+.channel-pro-pl-description {
   font-size: 14px;
-  color: #94a3b8;
+  color: #9ca3af;
   margin-top: 6px;
 }
 
-.total {
+.channel-pro-total {
   font-size: 13px;
-  color: #94a3b8;
-  margin-bottom: 15px;
+  color: #9ca3af;
+  margin-bottom: 14px;
 }
 
-.videos {
+.channel-pro-videos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
@@ -255,35 +223,76 @@
 
 /* ===== EMPTY STATES ===== */
 
-.channel-video > div,
-.channel-tweets > div:only-child,
-.channel-playlists > p {
-  background-color: #1e293b;
-  padding: 20px;
-  border-radius: 12px;
+.channel-pro-tweets > div:only-child,
+.channel-pro--playlists > p {
   text-align: center;
-  color: #94a3b8;
+  color: #9ca3af;
+  padding: 20px;
+  background: #121313;
+  border-radius: 12px;
 }
 
-/* ===== RESPONSIVE ===== */
+.channel-pro-video > div{
+  color: #9ca3af;
+  padding: 20px;
+  background: #121313;
+  border-radius: 12px;
+}
+
+/* ===== MOBILE ===== */
 
 @media (max-width: 768px) {
-  .channel-info {
+
+  .channel-pro-info > div:nth-child(2) {
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    margin-top: -50px;
   }
 
-  .subscribe-button {
-    align-self: flex-end;
-  }
-
-  .channel-avatar {
+  .channel-pro-avatar {
     width: 90px;
     height: 90px;
   }
 
-  .channel-name {
-    font-size: 22px;
+  .channel-pro-name {
+    font-size: 20px;
   }
+
+  .channel-pro-subscribe-button {
+    position: static;
+    margin: 15px 20px;
+  }
+
+}
+
+/* ===== LIGHT MODE ===== */
+
+body.light-mode .channel-profile {
+  background: #ffffff;
+  color: #121313;
+}
+
+body.light-mode .channel-pro-info,
+body.light-mode .channel-pro-tweets > div,
+body.light-mode .channel-pro-playlist-info {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+body.light-mode .channel-pro-option {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+body.light-mode .channel-pro-option button:hover {
+  background: #f1f5f9;
+}
+
+body.light-mode .channel-pro-avatar {
+  border: 4px solid #ffffff;
+}
+
+body.light-mode .channel-pro-total,
+body.light-mode .channel-pro-pl-description,
+body.light-mode .channel-pro-subscribers {
+  color: #64748b;
 }
