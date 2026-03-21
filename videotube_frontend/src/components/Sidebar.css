@@ -1,3 +1,4 @@
+/* SIDEBAR */
 .sidebar {
   width: 220px;
   height: 100vh;
@@ -59,7 +60,7 @@
   letter-spacing: 0.3px;
 }
 
-/* Scrollbar (optional if sidebar scrolls) */
+/* Scrollbar */
 .sidebar::-webkit-scrollbar {
   width: 5px;
 }
@@ -69,22 +70,32 @@
   border-radius: 10px;
 }
 
-/* Light Mode Support */
+/* ================= LIGHT MODE ================= */
+
 body.light-mode .sidebar {
   background-color: #ffffff;
   border-right: 1px solid #e2e8f0;
 }
 
+/* TEXT */
 body.light-mode .sidebar-link {
   color: #334155;
 }
 
+/* HOVER */
 body.light-mode .sidebar-link:hover {
-  background-color: rgba(255, 96, 68, 0.1);
-  color: #ff6044;
+  background-color: rgba(31, 31, 31, 0.08);
+  color: #1f1f1f;
 }
 
+/* ACTIVE */
 body.light-mode .sidebar-link.active {
-  background: #ff6044;
-  color: white;
+  background: #1f1f1f;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(31, 31, 31, 0.25);
+}
+
+/* SCROLLBAR */
+body.light-mode .sidebar::-webkit-scrollbar-thumb {
+  background: #1f1f1f;
 }

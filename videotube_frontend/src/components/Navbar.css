@@ -65,6 +65,11 @@ body.light-mode .navbar {
   color: white;
 }
 
+/* ✅ CHANGE COLOR IN LIGHT MODE */
+body.light-mode .nav-logo-box {
+  background: #1f1f1f;
+}
+
 .nav-logo-text {
   font-weight: 600;
   font-size: 18px;
@@ -104,6 +109,12 @@ body.light-mode .nav-search input {
   cursor: pointer;
 }
 
+/* ✅ SEARCH BUTTON LIGHT MODE */
+body.light-mode .nav-search button {
+  background: #1f1f1f;
+  border: 1px solid #e2e8f0;
+}
+
 /* RIGHT SECTION */
 .nav-right {
   display: flex;
@@ -141,6 +152,11 @@ body.light-mode .nav-icon-btn:hover {
   font-weight: 500;
 }
 
+/* ✅ SIGN IN BUTTON LIGHT MODE */
+body.light-mode .nav-signin-btn {
+  background: #1f1f1f;
+}
+
 /* NOTIFICATION */
 .notification {
   display: flex;
@@ -164,6 +180,11 @@ body.light-mode .nav-icon-btn:hover {
   position: relative;
   right: 8px;
   bottom: 5px;
+}
+
+/* ✅ NOTIFICATION BADGE LIGHT MODE */
+body.light-mode .notification p {
+  background: #1f1f1f;
 }
 
 /* AVATAR */

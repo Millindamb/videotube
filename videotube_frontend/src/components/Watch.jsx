@@ -242,14 +242,19 @@ const Watch =()=>{
               addNewComment();
             }}
           >
-            <input
-              onChange={(e)=>setNewComment(e.target.value)}
-              required
-              placeholder='Type Comment Here...'
-              value={newComment}
-              type="text"
-            />
-            <button type="submit">Add +</button>
+            
+            <h5>Add Comment</h5>
+            <div className='watch-add-comment-fl'>
+              <input
+                onChange={(e)=>setNewComment(e.target.value)}
+                required
+                placeholder='Type Comment Here...'
+                value={newComment}
+                type="text"
+                className='watch-add-comment-ip'
+              />
+              <button className='watch-add-comment-btn' type="submit">Add +</button>
+            </div>
           </form>
           {comments.length===0?(<p>No comments yet</p>):(
             comments.map((c)=>(

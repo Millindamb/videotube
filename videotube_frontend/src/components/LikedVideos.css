@@ -1,4 +1,28 @@
 /* ============================= */
+/* THEME VARIABLES (if not defined globally) */
+/* ============================= */
+
+:root {
+  --accent-color: #ff6044;
+  --bg-main: #121313;
+  --bg-card: #1c1d1b;
+  --text-main: #f1f5f9;
+  --text-secondary: #9ca3af;
+  --border-accent: rgba(255,96,68,0.12);
+  --bg-hover: rgba(255,96,68,0.06);
+}
+
+body.light-mode {
+  --accent-color: #1f1f1f;
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-secondary: #64748b;
+  --border-accent: rgba(0,0,0,0.08);
+  --bg-hover: rgba(0,0,0,0.04);
+}
+
+/* ============================= */
 /* MAIN CONTAINER */
 /* ============================= */
 
@@ -6,8 +30,9 @@
   width: 100%;
   padding: 25px 40px;
   min-height: 100vh;
-  background: #121313;
-  color: #f1f5f9;
+  background: var(--bg-main);
+  color: var(--text-main);
+  box-sizing: border-box;
 }
 
 /* ============================= */
@@ -25,17 +50,17 @@
 /* ============================= */
 
 .liked-videos > * {
-  background: #1c1d1b;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 8px;
-  border: 1px solid rgba(255,96,68,0.12);
+  border: 1px solid var(--border-accent);
   transition: all 0.25s ease;
 }
 
 .liked-videos > *:hover {
   transform: translateY(-4px);
-  border-color: rgba(255,96,68,0.35);
-  background: rgba(255,96,68,0.06);
+  border-color: var(--accent-color);
+  background: var(--bg-hover);
 }
 
 /* ============================= */
@@ -46,7 +71,7 @@
   text-align: center;
   font-size: 20px;
   font-weight: 500;
-  color: #9ca3af;
+  color: var(--text-secondary);
   margin-top: 80px;
 }
 
@@ -55,7 +80,6 @@
 /* ============================= */
 
 @media (max-width: 900px) {
-
   .liked-videos-container {
     padding: 20px;
   }
@@ -63,37 +87,10 @@
   .liked-videos {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
-
 }
 
 @media (max-width: 500px) {
-
   .liked-videos {
     grid-template-columns: 1fr;
   }
-
-}
-
-/* ============================= */
-/* LIGHT MODE */
-/* ============================= */
-
-body.light-mode .liked-videos-container {
-  background: #f8fafc;
-  color: #0f172a;
-}
-
-body.light-mode .liked-videos > * {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-}
-
-body.light-mode .liked-videos > *:hover {
-  transform: translateY(-4px);
-  border-color: #ff6044;
-  background: #fff7f5;
-}
-
-body.light-mode .liked-videos-status-text {
-  color: #64748b;
 }

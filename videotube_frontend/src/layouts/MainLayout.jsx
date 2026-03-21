@@ -6,14 +6,10 @@ import { isAuthContext } from "../context/context";
 
 const MainLayout = () => {
   const values=useContext(isAuthContext)
-  const [showSidebar,setShowSidebar]=useState(true);
-
-  useEffect(()=>{
-    setShowSidebar(values.isLoggedIn) 
-  },[])
+  const [showSidebar,setShowSidebar]=useState(false);
   return (
     <div style={{display:"flex"}}>
-        {!values.isLoggedIn && showSidebar && <Sidebar/>}
+        {showSidebar && <Sidebar/>}
         <div style={{flex: 1}}>
             <Navbar showSidebar={showSidebar} setShowSidebar={setShowSidebar}/>
             <Outlet/>
