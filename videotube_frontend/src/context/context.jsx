@@ -8,8 +8,11 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
-    if (token) {
+
+    if (token && token !== "null" && token !== "undefined") {
       setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
     }
   }, []);
 

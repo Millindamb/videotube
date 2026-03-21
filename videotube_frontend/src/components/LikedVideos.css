@@ -1,311 +1,99 @@
-/* ===== PAGE ROOT ===== */
+/* ============================= */
+/* MAIN CONTAINER */
+/* ============================= */
 
-.channel-profile {
-  background: #121313;
+.liked-videos-container {
+  width: 100%;
+  padding: 25px 40px;
   min-height: 100vh;
+  background: #121313;
   color: #f1f5f9;
-  padding-bottom: 50px;
 }
 
-.about-channel {
-  width: 90%;
-  margin: auto;
-}
+/* ============================= */
+/* VIDEOS GRID */
+/* ============================= */
 
-/* ===== CHANNEL HEADER ===== */
-
-.channel-pro-info {
-  background: #121313;
-  border-radius: 16px;
-  border: 1px solid #334155;
-  overflow: hidden;
-  margin-top: 25px;
-  position: relative;
-  transition: all 0.25s ease;
-}
-
-.channel-pro-info:hover {
-  border-color: rgba(255,96,68,0.35);
-}
-
-/* ===== COVER IMAGE ===== */
-
-.channel-pro-coverImage {
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-}
-
-.channel-pro-coverImage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ===== AVATAR + USER INFO ===== */
-
-.channel-pro-info > div:nth-child(2) {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 20px;
-  margin-top: -60px;
-  position: relative;
-}
-
-.channel-pro-avatar {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  border: 4px solid #121313;
-  object-fit: cover;
-  background: #121313;
-  transition: transform 0.25s ease;
-}
-
-.channel-pro-avatar:hover {
-  transform: scale(1.05);
-}
-
-.channel-pro-name {
-  font-size: 22px;
-  font-weight: 600;
-}
-
-.channel-pro-subscribers {
-  font-size: 14px;
-  color: #9ca3af;
-}
-
-/* ===== SUBSCRIBE BUTTON ===== */
-
-.channel-pro-subscribe-button {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-}
-
-.channel-pro-subscribe-button button {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  background: #ff6044;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.channel-pro-subscribe-button button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(255,96,68,0.35);
-}
-
-/* ===== TAB OPTIONS ===== */
-
-.channel-pro-option {
-  display: flex;
-  gap: 18px;
-  margin-top: 25px;
-  border-bottom: 1px solid #334155;
-  padding-bottom: 10px;
-}
-
-.channel-pro-option button {
-  background: transparent;
-  border: none;
-  color: #9ca3af;
-  font-size: 15px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.channel-pro-option button:hover {
-  background: rgba(255,96,68,0.08);
-  color: #ff6044;
-}
-
-/* ===== VIDEOS SECTION ===== */
-
-.channel-pro-video {
-  margin-top: 30px;
+.liked-videos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 22px;
 }
 
-/* ===== TWEETS SECTION ===== */
+/* ============================= */
+/* VIDEOCARD WRAPPER */
+/* ============================= */
 
-.channel-pro-tweets {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.channel-pro-tweets > div {
-  background: #121313;
+.liked-videos > * {
+  background: #1c1d1b;
   border-radius: 12px;
-  padding: 18px;
-  border: 1px solid #334155;
+  padding: 8px;
+  border: 1px solid rgba(255,96,68,0.12);
   transition: all 0.25s ease;
 }
 
-.channel-pro-tweets > div:hover {
+.liked-videos > *:hover {
   transform: translateY(-4px);
   border-color: rgba(255,96,68,0.35);
-  background: rgba(255,96,68,0.05);
+  background: rgba(255,96,68,0.06);
 }
 
-/* ===== TWEET USER INFO ===== */
+/* ============================= */
+/* STATUS TEXT */
+/* ============================= */
 
-.channel-pro-user-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.channel-pro-user-info img {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.channel-pro-user-info div:nth-child(2) {
-  font-weight: 600;
-}
-
-.channel-pro-user-info div:last-child {
-  font-size: 12px;
-  color: #9ca3af;
-}
-
-/* ===== PLAYLIST SECTION ===== */
-
-.channel-pro--playlists {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.channel-pro-playlist-info {
-  background: #121313;
-  border-radius: 14px;
-  padding: 22px;
-  border: 1px solid #334155;
-  transition: all 0.25s ease;
-}
-
-.channel-pro-playlist-info:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255,96,68,0.35);
-  background: rgba(255,96,68,0.05);
-}
-
-.channel-pro-playlist-controls {
-  margin-bottom: 14px;
-}
-
-.channel-pro-pl-name {
+.liked-videos-status-text {
+  text-align: center;
   font-size: 20px;
-  font-weight: 600;
-}
-
-.channel-pro-pl-description {
-  font-size: 14px;
+  font-weight: 500;
   color: #9ca3af;
-  margin-top: 6px;
+  margin-top: 80px;
 }
 
-.channel-pro-total {
-  font-size: 13px;
-  color: #9ca3af;
-  margin-bottom: 14px;
-}
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
 
-.channel-pro-videos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-}
+@media (max-width: 900px) {
 
-/* ===== EMPTY STATES ===== */
-
-.channel-pro-tweets > div:only-child,
-.channel-pro--playlists > p,
-.channel-pro-video > div {
-  color: #9ca3af;
-  padding: 20px;
-  background: #121313;
-  border-radius: 12px;
-}
-
-/* ===== MOBILE ===== */
-
-@media (max-width: 768px) {
-
-  .channel-pro-info > div:nth-child(2) {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: -50px;
+  .liked-videos-container {
+    padding: 20px;
   }
 
-  .channel-pro-avatar {
-    width: 90px;
-    height: 90px;
-  }
-
-  .channel-pro-name {
-    font-size: 20px;
-  }
-
-  .channel-pro-subscribe-button {
-    position: static;
-    margin: 15px 20px;
+  .liked-videos {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
 
 }
 
-/* ===== LIGHT MODE ===== */
+@media (max-width: 500px) {
 
-body.light-mode .channel-profile {
-  background: #ffffff;
-  color: #121313;
+  .liked-videos {
+    grid-template-columns: 1fr;
+  }
+
 }
 
-body.light-mode .channel-pro-info,
-body.light-mode .channel-pro-tweets > div,
-body.light-mode .channel-pro-playlist-info {
+/* ============================= */
+/* LIGHT MODE */
+/* ============================= */
+
+body.light-mode .liked-videos-container {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+body.light-mode .liked-videos > * {
   background: #ffffff;
   border: 1px solid #e2e8f0;
 }
 
-body.light-mode .channel-pro-option {
-  border-bottom: 1px solid #e2e8f0;
-}
-
-body.light-mode .channel-pro-option button:hover {
-  background: #fff7f5;
-  color: #ff6044;
-}
-
-body.light-mode .channel-pro-avatar {
-  border: 4px solid #ffffff;
-}
-
-body.light-mode .channel-pro-total,
-body.light-mode .channel-pro-pl-description,
-body.light-mode .channel-pro-subscribers {
-  color: #64748b;
-}
-
-body.light-mode .channel-pro-tweets > div:hover,
-body.light-mode .channel-pro-playlist-info:hover {
+body.light-mode .liked-videos > *:hover {
+  transform: translateY(-4px);
   border-color: #ff6044;
   background: #fff7f5;
+}
+
+body.light-mode .liked-videos-status-text {
+  color: #64748b;
 }

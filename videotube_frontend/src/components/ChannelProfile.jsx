@@ -117,23 +117,26 @@ const ChannelProfile=()=>{
                 <div className="channel-pro-coverImage">
                     <img src={channelInfo.coverImage} alt="" />
                 </div>
-                <div className="channel-pro-info">
-                    <img className="channel-pro-avatar" src={channelInfo.avatar} alt="User Avatar"/>
-                    <div>
-                        <div className="channel-pro-name">{channelInfo.username}</div>
-                        <div className="channel-pro-subscribers">
-                            {channelInfo.subscribersCount} subscribers
-                        </div>
-                    </div>
-                </div>
 
-                {user && channelInfo._id !== user._id && (
-                    <div className="channel-pro-subscribe-button">
-                    <button onClick={()=>toggleSub()}>
-                        {isSubscribed ? "Unsubscribe" : "Subscribe"}
-                    </button>
+                <div className="channel-pro-header">
+
+                    <img className="channel-pro-avatar" src={channelInfo.avatar} alt="User Avatar"/>
+
+                    <div className="channel-pro-text">
+                    <div className="channel-pro-name">{channelInfo.username}</div>
+                    <div className="channel-pro-subscribers">
+                        {channelInfo.subscribersCount} subscribers
                     </div>
-                )}
+                    </div>
+
+                    {user && channelInfo._id !== user._id && (
+                    <div className="channel-pro-subscribe-button">
+                        <button onClick={toggleSub}>
+                        {isSubscribed ? "Unsubscribe" : "Subscribe"}
+                        </button>
+                    </div>
+                    )}
+                </div>
             </div>
             <div className='channel-pro-option'>
                 <button onClick={()=>setCurrentPart(1)}>Video</button>

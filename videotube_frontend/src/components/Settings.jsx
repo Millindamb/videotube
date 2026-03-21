@@ -110,63 +110,66 @@ const Settings=() => {
 
   return (
     <div className='settings'>
-      <div className='option'>
+      <div className='settings-option'>
         <button onClick={()=>{setCurrentPart(true)}}>Profile</button>
         <button onClick={()=>{setCurrentPart(false)}}>Password</button>
       </div>
-      {currentPart?<div className='updateDetails'>
+      {currentPart?<div className='settings-updateDetails'>
         
-        {toEdit===1?<form className='form1' onSubmit={(e)=>{e.preventDefault();updateUserNameAndEmail()}}>
+        {toEdit===1?<form className='settings-form1' onSubmit={(e)=>{e.preventDefault();updateUserNameAndEmail()}}>
           <p>Full Name</p>
-          <input type="text" required value={fullname} onChange={(e)=>{setFullname(e.target.value)}}/>
+          <input type="text" className='settings-form1-input' required value={fullname} onChange={(e)=>{setFullname(e.target.value)}}/>
           <p>Email</p>
-          <input type="text" required value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
+          <input type="text" className='settings-form1-input' required value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
           <button type='submit'>Update</button><button type='button' onClick={()=>setToEdit(0)}>Cancel</button>
         </form>:
         <div>
           {updating?<div>Updating...</div>
-          :<div className='form1-view'>
+          :<div className='settings-form1-view'>
             <p>Full Name</p>
-            <div>{fullname}</div>
+            <div className='settings-form1-fullname'>{fullname}</div>
             <p>Email</p>
-            <div>{email}</div>
+            <div className='settings-form1-email'>{email}</div>
             <button onClick={()=>setToEdit(1)}>Edit</button>
           </div>}
         </div>}
         
-        {toEdit===2?<form className='form2' onSubmit={(e)=>{e.preventDefault();updateUserCoverImage()}}>
+        {toEdit===2?<form className='settings-form2' onSubmit={(e)=>{e.preventDefault();updateUserCoverImage()}}>
           {updating?<div>Updating...</div>
-          :<div className='form2-edit'>
+          :<div className='settings-form2-edit'>
             <p>Cover Image</p>
-            <input type="file" required accept="image/*" onChange={(e)=>{setCoverImage(e.target.files[0])}}/>
+            <input className='settings-form2-coverImage' type="file" required accept="image/*" onChange={(e)=>{setCoverImage(e.target.files[0])}}/>
             <button type='submit'>Update</button><button type='button' onClick={()=>setToEdit(0)}>Cancel</button>
           </div>}
-        </form>:<div className='form2-view'>
+        </form>:<div className='settings-form2-view'>
           <img src={updatedCoverImage} alt="user cover image" />
           <button onClick={()=>setToEdit(2)}>Edit</button>
         </div>}
         
-        {toEdit===3?<form className='form3' onSubmit={(e)=>{e.preventDefault();updateUserAvatar()}}>
+        {toEdit===3?<form className='settings-form3' onSubmit={(e)=>{e.preventDefault();updateUserAvatar()}}>
           {updating?<div>Updating...</div>
           :<div className='form3-edit'>
             <p>Avatar Image</p>
-            <input type="file" required accept="image/*" onChange={(e)=>{setAvatar(e.target.files[0])}}/>
+            <input className='settings-form3-avatar' type="file" required accept="image/*" onChange={(e)=>{setAvatar(e.target.files[0])}}/>
             <button type='submit'>Update</button><button type='button' onClick={()=>setToEdit(0)}>Cancel</button>
           </div>}
-        </form>:<div className='form3-view'>
+        </form>:<div className='settings-form3-view'>
           <img src={updatedAvatar} alt="user avatar image" />
           <button onClick={()=>setToEdit(3)}>Edit</button>
         </div>}
       </div>:
-      <div className='updatePassword'>
-        <form onSubmit={(e)=>{e.preventDefault();updateUserPassword()}}>
+      <div className='settings-updatePassword'>
+        <form className='settings-password-form' onSubmit={(e)=>{e.preventDefault();updateUserPassword();}}>
           <h2>Change Password</h2>
           <p>Current Password</p>
-          <input type="text" required onChange={(e)=>{password=e.target.value}}/>
+          <input className='settings-password-input' type="password" required onChange={(e)=>{password=e.target.value}}/>
+
           <p>New Password</p>
-          <input type="text" required onChange={(e)=>{newPassword=e.target.value}}/>
+          <input className='settings-password-input' type="password" required onChange={(e)=>{newPassword=e.target.value}}/>
+
           <p>Confirm Password</p>
-          <input type="text" required onChange={(e)=>{newPassword2=e.target.value}}/>
+          <input className='settings-password-input' type="password" required onChange={(e)=>{newPassword2=e.target.value}}/>
+          
           {error && <div className='error-section'>{error}</div>}
           <button type='submit'>Change Password</button>
         </form>

@@ -3,7 +3,7 @@ import './watch.css'
 import { isAuthContext } from '../context/context';
 import ChannelInfo from './ChannelInfo';
 import { getVideos } from '../api/VideoApi';
-import { getCurrentVideo } from '../api/WatchVideo'
+import { getCurrentVideo, addView, getVideoLikes,addComment } from '../api/WatchVideo'
 import { getComments } from '../api/GetComment';
 import VideoCard from '../components/VideoCard';
 import { useParams } from 'react-router-dom';
@@ -26,6 +26,9 @@ const Watch =()=>{
   let [isLiked,setIsLiked]=useState(false);
   const [msg,setMsg]=useState(null);
   const user=JSON.parse(localStorage.getItem('user'))
+  const [likes,setLikes]=useState(0)
+  const [newComment,setNewComment]=useState("");
+  const [commentToEdit,setCommentToEdit]=useState("")
 
   useEffect(()=>{
   if(!videoId)return;
@@ -52,6 +55,19 @@ const Watch =()=>{
       isMounted=false;
     };
   },[videoId]);
+
+  useEffect(() => {
+    if (!videoId) return;
+
+    const viewedKey = `viewed_${videoId}`;
+    if (sessionStorage.getItem(viewedKey)) return;
+
+    const timer = setTimeout(async() => {
+      const response=await addView(videoId);
+      sessionStorage.setItem(viewedKey, "true");
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [videoId]);
 
 
   useEffect(()=>{
@@ -98,7 +114,7 @@ const Watch =()=>{
   },[videoId,page]);
 
   useEffect(()=>{
-    setComments([]);
+    getLikes()
     setPage(1);
   }, [videoId]);
   
@@ -107,6 +123,11 @@ const Watch =()=>{
   const handleLike=async()=>{
     try{
       const res=await toggleVideoLike(videoId);
+      if(isLiked){
+        setLikes(prev=>prev-1);
+      }else{
+        setLikes(prev=>prev+1);
+      }
       setIsLiked(prev=>!prev);
     }catch(e){
       console.log(e);
@@ -133,6 +154,30 @@ const Watch =()=>{
       console.log(e);
     }   
   }
+
+  const getLikes=async()=>{
+    try{
+      const response=await getVideoLikes(videoId)
+      setLikes(response.data.likeCount)
+    }catch(e){
+      console.log(e)
+    }
+  }
+
+  const addNewComment = async () => {
+    try {
+      const res = await addComment(videoId, newComment);
+      const createdComment = res.data.data;
+
+      const formattedComment={...createdComment,userInfo:{avatar: user.avatar,username: user.username}};
+
+      setComments(prev=>[formattedComment,...prev]);
+      setNewComment("");
+
+    } catch(e){
+      console.log(e);
+    }
+  };
   
   if (loading) return <div>Loading...</div>;
   if (!video) return <div>Video not found</div>;
@@ -148,30 +193,30 @@ const Watch =()=>{
             <h2>{video.title}</h2>
             {values.isLoggedIn && <div className='watch-buttons'>
               <button onClick={handleLike}>
-                {isLiked ? "Unlike" : "Like"}
+                {likes+" "}
+                {isLiked ? <i className="fa-solid fa-thumbs-up"></i> : <i className="fa-regular fa-thumbs-up"></i>}
               </button>
               <button onClick={()=>getPlaylists()}>Add to Playlist</button>
               {msg!==null && <div>{msg}</div>}
               {showplay && (
-                <div className='watch-addToPlaylist'>
-                  {playlists.length===0?(<p>No playlists found</p>):(
-                    <div>
-                      <div className='addToPlaylist-cancle' onClick={(e)=>{e.stopPropagation();setShowplay(false);}}><i className="fa-solid fa-xmark"></i></div>
-                      {playlists.map((pl)=>(
-                        <div key={pl._id} onClick={()=>addVideoToPl(pl._id)} className='playlist-info'>
-                          <div className='playlist-info'>
-                            <div className='watch-name'>{pl.name}</div>
-                            <p className='watch-description'>{pl.description}</p>
-                            {pl.videos.length===0 ? (
-                              <p>No videos in the playlist yet</p>
-                              ):(
-                              <p className='watch-total'>Total videos: {pl.videos.length}</p>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                <div className="watch-addToPlaylist">
+
+                  <div className="watch-playlist-header">
+                    <span>Add to Playlist</span>
+                    <i className="fa-solid fa-xmark" onClick={()=>setShowplay(false)}></i>
+                  </div>
+
+                  {playlists.length===0?(
+                    <p className="watch-empty">No playlists found</p>) 
+                    : (playlists.map((pl)=>(
+                      <div key={pl._id}onClick={() => addVideoToPl(pl._id)} className="playlist-info">
+                        <div className="watch-name">{pl.name}</div>
+                        <p className="watch-description">{pl.description || "No description"}</p>
+                        <p className="watch-total">{pl.videos.length} video{pl.videos.length!==1 && "s"}</p>
+                      </div>
+                    ))
                   )}
+
                 </div>
               )}
             </div>}
@@ -189,10 +234,35 @@ const Watch =()=>{
         </div>
         {values.isLoggedIn && <div className='watch-video-comments'>
           <h3>Comments</h3>
-
+          <form 
+            className='watch-add-comment'
+            onSubmit={(e) => {
+              e.preventDefault();
+              addNewComment();
+            }}
+          >
+            <input
+              onChange={(e)=>setNewComment(e.target.value)}
+              required
+              placeholder='Type Comment Here...'
+              value={newComment}
+              type="text"
+            />
+            <button type="submit">Add +</button>
+          </form>
           {comments.length===0?(<p>No comments yet</p>):(
             comments.map((c)=>(
-              <Comment key={c._id} avatar={c.userInfo.avatar} username={c.userInfo.username} date={c.createdAt} content={c.content}/>
+              <Comment 
+                key={c._id} 
+                commentId={c._id} 
+                avatar={c.userInfo.avatar} 
+                username={c.userInfo.username} 
+                date={c.createdAt} 
+                content={c.content} 
+                owner={c.userInfo._id}
+                commentToEdit={commentToEdit}
+                setCommentToEdit={setCommentToEdit}
+              />
             ))
           )}
 

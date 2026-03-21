@@ -1,4 +1,4 @@
-/* ===== Main Layout ===== */
+/* ===== MAIN LAYOUT ===== */
 
 .watch-section {
   display: flex;
@@ -25,7 +25,7 @@
   overflow-y: auto;
 }
 
-/* ===== Video Player ===== */
+/* ===== VIDEO PLAYER ===== */
 
 .watch-playing video {
   width: 100%;
@@ -39,7 +39,7 @@
   font-weight: 600;
 }
 
-/* ===== Buttons ===== */
+/* ===== BUTTONS ===== */
 
 .watch-buttons {
   display: flex;
@@ -47,6 +47,7 @@
   margin-top: 12px;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .watch-buttons button {
@@ -66,66 +67,78 @@
   border-color: #ff6044;
 }
 
-/* ===== Message ===== */
+/* ===== MESSAGE ===== */
 
 .watch-buttons div {
   font-size: 13px;
   padding: 4px 10px;
   border-radius: 6px;
-  background: rgba(255,96,68,0.15);
+  background: #121311;
   color: #ff6044;
 }
 
-/* ===== Playlist Popup ===== */
+/* ===== ADD TO PLAYLIST POPUP ===== */
 
 .watch-addToPlaylist {
   position: absolute;
-  margin-top: 10px;
-  width: 320px;
+  top: 45px;
+  left: 0;
+
+  width: 300px;
   max-height: 300px;
   overflow-y: auto;
+
   background: #1c1d1b;
-  border-radius: 12px;
+  border: 1px solid rgba(255,96,68,0.25);
+  border-radius: 10px;
+
   padding: 10px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-  z-index: 100;
-  border: 1px solid rgba(255,96,68,0.2);
+  z-index: 50;
 }
 
-/* Cancel Button */
+/* ===== PLAYLIST HEADER ===== */
 
-.addToPlaylist-cancle {
-  font-size: 18px;
-  color: #ff6044;
-  padding-left: 10px;
+.watch-playlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(255,96,68,0.15);
+  margin-bottom: 8px;
+}
+
+.watch-playlist-header i {
   cursor: pointer;
-  transition: 0.2s;
+  font-size: 16px;
+  color: #ff6044;
 }
 
-.addToPlaylist-cancle:hover {
-  transform: scale(1.2);
-}
-
-/* ===== Playlist Item ===== */
+/* ===== PLAYLIST CARD ===== */
 
 .playlist-info {
   padding: 10px;
-  border-radius: 8px;
-  transition: 0.25s;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .playlist-info:hover {
-  background: rgba(255,96,68,0.08);
-  cursor: pointer;
+  background: #242523;
 }
 
+/* ===== PLAYLIST TEXT ===== */
+
 .watch-name {
+  font-size: 14px;
   font-weight: 600;
-  font-size: 15px;
 }
 
 .watch-description {
-  font-size: 13px;
+  font-size: 12px;
   color: #9ca3af;
 }
 
@@ -134,14 +147,21 @@
   color: #9ca3af;
 }
 
-/* ===== Channel Info ===== */
+.watch-empty {
+  text-align: center;
+  padding: 15px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* ===== CHANNEL INFO ===== */
 
 .watch-channel-info {
   margin-top: 18px;
   margin-bottom: 12px;
 }
 
-/* ===== Video Info ===== */
+/* ===== VIDEO DESCRIPTION ===== */
 
 .watch-info {
   background: #1c1d1b;
@@ -156,7 +176,7 @@
   font-size: 14px;
 }
 
-/* ===== Comments ===== */
+/* ===== COMMENTS ===== */
 
 .watch-video-comments {
   padding: 15px;
@@ -185,7 +205,7 @@
   opacity: 0.85;
 }
 
-/* ===== More Videos ===== */
+/* ===== MORE VIDEOS ===== */
 
 .watch-more-videos > * {
   background: #1c1d1b;
@@ -200,7 +220,7 @@
   cursor: pointer;
 }
 
-/* ===== Scrollbars ===== */
+/* ===== SCROLLBAR ===== */
 
 .watch-more-videos::-webkit-scrollbar,
 .watch-addToPlaylist::-webkit-scrollbar {
@@ -213,7 +233,7 @@
   border-radius: 10px;
 }
 
-/* ===== Responsive ===== */
+/* ===== RESPONSIVE ===== */
 
 @media (max-width: 1000px) {
 
@@ -237,6 +257,99 @@
 
   .watch-addToPlaylist {
     width: 100%;
+    left: 0;
   }
 
+}
+
+/* ===== LIGHT MODE ===== */
+
+body.light-mode .watch-section {
+  background: #f8fafc;
+  color: #1f2937;
+}
+
+/* video cards on right */
+
+body.light-mode .watch-more-videos > * {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+body.light-mode .watch-more-videos > *:hover {
+  background: #f1f5f9;
+}
+
+/* buttons */
+
+body.light-mode .watch-buttons button {
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid #e2e8f0;
+}
+
+body.light-mode .watch-buttons button:hover {
+  background: #ff6044;
+  color: white;
+  border-color: #ff6044;
+}
+
+/* popup */
+
+body.light-mode .watch-addToPlaylist {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+/* popup header */
+
+body.light-mode .watch-playlist-header {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* playlist item */
+
+body.light-mode .playlist-info:hover {
+  background: #f1f5f9;
+}
+
+/* description text */
+
+body.light-mode .watch-description,
+body.light-mode .watch-total,
+body.light-mode .watch-empty {
+  color: #64748b;
+}
+
+/* video info */
+
+body.light-mode .watch-info {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+/* comments section */
+
+body.light-mode .watch-video-comments {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+/* message */
+
+body.light-mode .watch-buttons div {
+  background: #fff7f5;
+  color: #ff6044;
+}
+
+/* scrollbar */
+
+body.light-mode .watch-more-videos::-webkit-scrollbar-thumb,
+body.light-mode .watch-addToPlaylist::-webkit-scrollbar-thumb {
+  background: #ff6044;
+}
+
+.watch-more-videos{
+  height: 100vh;
+  border-radius: 15px;
 }

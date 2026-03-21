@@ -43,8 +43,6 @@ const ChannelInfo = ({ owner }) => {
 
         if (isLoggedIn && !isCurrentUser) {
           const subRes = await isChannelSubscribed(owner);
-
-          // IMPORTANT: read correct value
           const subscribed =
             subRes?.data?.data?.isSubscribed ??
             subRes?.data?.data ??

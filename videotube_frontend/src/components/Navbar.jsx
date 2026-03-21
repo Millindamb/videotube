@@ -13,16 +13,22 @@ const Navbar=({ showSidebar,setShowSidebar })=>{
   const [darkMode,setDarkMode]=useState(!document.body.classList.contains("light-mode"));
   const [dropdownOpen,setDropdownOpen]=useState(false);
 
-  const logout=async()=>{
-    try{
-      const response=await logoutUser();
-      if(response?.data?.success){
-        values.setLoggedIn(false);
-        setDropdownOpen(false);
-        navigate("/");
+  const logout = async () => {
+    try {
+      await logoutUser();
+    } catch (err) {
+      console.error("Logout API failed", err);
+    } finally {
+      const token = localStorage.getItem("accessToken");
+
+      if (token) {
+        localStorage.removeItem("accessToken");
       }
-    } catch(err){
-      console.error("Logout failed",err);
+
+      localStorage.removeItem("refreshToken");
+      values.setLoggedIn(false);
+      setDropdownOpen(false);
+      navigate("/");
     }
   };
 
@@ -62,7 +68,7 @@ const Navbar=({ showSidebar,setShowSidebar })=>{
 
       <div className="nav-right">
        {values.isLoggedIn &&(
-          <button onClick={()=>navigate("/dashboard#upload-section")} className="nav-icon-btn" title="Upload">
+          <button onClick={()=>navigate("/dashboard#dashboard-upload-section")} className="nav-icon-btn" title="Upload">
             <i className="fa-solid fa-upload"></i>
           </button>
         )}
