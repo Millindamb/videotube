@@ -86,6 +86,7 @@ const Watch =()=>{
     if(!videoId) return;
 
     const fetchLikeStatus=async()=>{
+      if(!values.isLoggedIn){return;}
       try{
         const res=await checkIsVideoLiked(videoId);
         setIsLiked(res.data.data);

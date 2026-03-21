@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './comment.css'
 import { deleteComment, updateComment } from '../api/WatchVideo';
+import { checkIsCommentLiked, toggleCommentLike } from '../api/Likes';
 
 const Comment = ({commentId,avatar,username,date,content,owner,commentToEdit,setCommentToEdit}) => {
     const user = JSON.parse(localStorage.getItem("user"))
@@ -8,6 +9,7 @@ const Comment = ({commentId,avatar,username,date,content,owner,commentToEdit,set
     const [commentContent, setCommentContent] = useState(content);
     const [displayContent, setDisplayContent] = useState(content);
     const [isDeleted, setIsDeleted] = useState(false)
+    const [like,setLike]=useState(false)
 
     const formatTimeAgo = (dateString) => {
         const now = new Date();
@@ -47,6 +49,27 @@ const Comment = ({commentId,avatar,username,date,content,owner,commentToEdit,set
         }
     }, [commentToEdit]);
 
+    useEffect(()=>{
+        const fetchLikeStatus=async()=>{
+            try{
+                const response=await checkIsCommentLiked(commentId);
+                setLike(response.data.data);
+            }catch(e){
+                console.log(e);
+            }
+        };
+        fetchLikeStatus();
+    },[commentId]);
+
+    const handleLike=async()=>{
+        try{
+            await toggleCommentLike(commentId);
+            setLike(prev=>!prev)
+        }catch(e){
+            console.log(e)
+        }
+    }
+
     if (isDeleted) {
         return <p>Comment Deleted</p>
     }
@@ -75,7 +98,7 @@ const Comment = ({commentId,avatar,username,date,content,owner,commentToEdit,set
             </div>
 
             <div className="comment-like">
-                <button><i className="fa-regular fa-thumbs-up"></i></button>
+                <button onClick={handleLike}>{like?<i className="fa-solid fa-thumbs-up"></i>:<i className="fa-regular fa-thumbs-up"></i>}</button>
             </div>
 
             {user._id == owner && 

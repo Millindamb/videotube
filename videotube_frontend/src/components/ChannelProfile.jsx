@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { isAuthContext } from '../context/context'
 import {useParams} from 'react-router-dom'
 import { getUserVideos } from '../api/Dashboard'
 import { getChannelInfo } from '../api/GetChannelsVideo'
@@ -7,8 +8,10 @@ import './ChannelProfile.css'
 import { getUserPlaylists } from '../api/GetUsersPlalists'
 import { getTweets } from '../api/Tweet'
 import { toggelSubscribe } from '../api/Togglesub'
+import { isChannelSubscribed } from '../api/watchChannel'
 
 const ChannelProfile=()=>{
+    const values=useContext(isAuthContext)
     const {channelName}=useParams()
     const [channelInfo,setChannelInfo]=useState({})
     const [isSubscribed,setIsSubscribed]=useState(null)
@@ -22,7 +25,6 @@ const ChannelProfile=()=>{
         const fetchChannelInfo=async()=>{
             try{
                 const response=await getChannelInfo(channelName)
-                setIsSubscribed(response.data.data.isSubscribed)
                 setChannelInfo(response.data.data)
             }catch(e){
                 console.log(e)
@@ -71,8 +73,22 @@ const ChannelProfile=()=>{
         };
 
         fetchTweets();
-    }, [channelInfo._id]);
+    }, [channelName,channelInfo._id]);
 
+    useEffect(()=>{
+        if(!channelInfo._id || !values.isLoggedIn) return;
+        
+        const checkSubscribed=async()=>{
+            try{
+                const res=await isChannelSubscribed(channelInfo._id)
+                setIsSubscribed(res.data.data.isSubscribed)
+            }catch(e){
+                console.log(e)
+            }
+        }
+
+        checkSubscribed()
+    },[channelInfo._id])
 
     const formatTimeAgo=(dateString)=>{
     const now=new Date();
@@ -129,7 +145,7 @@ const ChannelProfile=()=>{
                     </div>
                     </div>
 
-                    {user && channelInfo._id !== user._id && (
+                    {values.isLoggedIn && channelInfo._id !== user._id && (
                     <div className="channel-pro-subscribe-button">
                         <button onClick={toggleSub}>
                         {isSubscribed ? "Unsubscribe" : "Subscribe"}
