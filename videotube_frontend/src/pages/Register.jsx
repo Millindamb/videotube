@@ -42,7 +42,7 @@ const Register = () => {
       <div className="register-box">
         <div className="register-text">
           <h2>Create an Account</h2>
-          <p>Join Videotube and start Streaming</p>
+          <p>Join Streamera and start Streaming</p>
         </div>
         <div className="register-input">
           <div className="register-image-upload">
@@ -67,7 +67,7 @@ const Register = () => {
             {error && <div className='error' style={{color:'red'}}>{error}</div>}
 
             <div className="register-btn">
-              <button type="submit" disabled={isLoading} style={{cursor:isLoading ? "not-allowed":"pointer",opacity: isLoading ? 0.5:1,}}> {isLoading ? "Creating Account...":"Create Account"}</button>
+              <button type="submit" disabled={isLoading} style={{cursor:isLoading ? "not-allowed":"pointer",opacity: isLoading ? 0.5:1,}}> {isLoading ? "Signing Up...":"Sign Up"}</button>
             </div>
           </form>
           <div className='register-desc'>

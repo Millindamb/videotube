@@ -1,3 +1,17 @@
+/* ===== THEME VARIABLES ===== */
+
+:root {
+  --accent-color: #ff6044;
+  --accent-hover: #ff735a;
+}
+
+body.light-mode {
+  --accent-color: #1f1f1f;
+  --accent-hover: #333333;
+}
+
+/* GLOBAL */
+
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
@@ -11,8 +25,8 @@ body.light-mode {
 }
 
 /* NAVBAR */
+
 .navbar {
-  overflow: visible;
   position: sticky;
   top: 0;
   z-index: 9999;
@@ -30,7 +44,8 @@ body.light-mode .navbar {
   border-bottom: 1px solid #e2e8f0;
 }
 
-/* LEFT SECTION */
+/* LEFT */
+
 .nav-left {
   display: flex;
   align-items: center;
@@ -46,10 +61,10 @@ body.light-mode .navbar {
 }
 
 /* LOGO */
+
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
   color: inherit;
 }
@@ -57,7 +72,6 @@ body.light-mode .navbar {
 .nav-logo-box {
   width: 32px;
   height: 32px;
-  background: #ff6044;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,57 +79,94 @@ body.light-mode .navbar {
   color: white;
 }
 
-/* ✅ CHANGE COLOR IN LIGHT MODE */
-body.light-mode .nav-logo-box {
-  background: #1f1f1f;
-}
-
 .nav-logo-text {
   font-weight: 600;
   font-size: 18px;
 }
 
-/* SEARCH */
+.nav-logo-box img{
+  height: 25px;
+}
+
+.nav-logo-text .S{
+  color: #ff6044;
+}
+
+.nav-logo-text{
+  margin-right: 15px;
+}
+
+/* ===== SEARCH (PERFECT ALIGNMENT FIX) ===== */
+
 .nav-search {
   display: flex;
+  align-items: center;
   width: 100%;
   max-width: 450px;
+  height: 40px; /* slightly increased for better balance */
 }
+
+/* RESET DEFAULT INPUT/BUTTON STYLES */
+
+.nav-search input,
+.nav-search button {
+  height: 100%;
+  box-sizing: border-box; /* 🔥 IMPORTANT */
+  border: none; /* reset first */
+  outline: none;
+}
+
+/* INPUT */
 
 .nav-search input {
   flex: 1;
-  padding: 8px 14px;
-  border: 1px solid #121313;
+  padding: 0 14px;
+  border: 1px solid #1e293b;
   border-right: none;
-  border-radius: 5px 0 0 5px;
+  border-radius: 6px 0 0 6px;
   background: #1e293b;
   color: white;
-  outline: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center; /* 🔥 FIX TEXT VERTICAL */
 }
+
+/* BUTTON */
+
+.nav-search button {
+  width: 48px; /* fixed width = cleaner UI */
+  border: 1px solid #1e293b;
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  background: var(--accent-color);
+  color: white;
+  cursor: pointer;
+  position: relative;
+  top: 2.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0; /* 🔥 REMOVE EXTRA HEIGHT BUG */
+}
+
+/* LIGHT MODE */
 
 body.light-mode .nav-search input {
   background: #ffffff;
   border: 1px solid #e2e8f0;
+  border-right: none;
   color: #121313;
 }
 
-.nav-search button {
-  padding: 8px 14px;
-  border: 1px solid #1e293b;
-  border-left: none;
-  border-radius: 0 5px 5px 0;
-  background: #ff6044;
-  color: white;
-  cursor: pointer;
-}
-
-/* ✅ SEARCH BUTTON LIGHT MODE */
 body.light-mode .nav-search button {
-  background: #1f1f1f;
+  background: var(--accent-color);
   border: 1px solid #e2e8f0;
+  border-left: none;
 }
 
-/* RIGHT SECTION */
+/* RIGHT */
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -123,6 +174,7 @@ body.light-mode .nav-search button {
 }
 
 /* ICON BUTTONS */
+
 .nav-icon-btn {
   background: none;
   border: none;
@@ -141,23 +193,24 @@ body.light-mode .nav-icon-btn:hover {
   background: #e2e8f0;
 }
 
-/* SIGN IN BUTTON */
+/* SIGN IN */
+
 .nav-signin-btn {
   padding: 6px 14px;
   border-radius: 5px;
   border: none;
-  background: #ff6044;
+  background: var(--accent-color);
   color: white;
   cursor: pointer;
   font-weight: 500;
 }
 
-/* ✅ SIGN IN BUTTON LIGHT MODE */
-body.light-mode .nav-signin-btn {
-  background: #1f1f1f;
+.nav-signin-btn:hover {
+  background: var(--accent-hover);
 }
 
 /* NOTIFICATION */
+
 .notification {
   display: flex;
   flex-direction: row-reverse;
@@ -174,7 +227,7 @@ body.light-mode .nav-signin-btn {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: #ff6044;
+  background: var(--accent-color);
   color: white;
   font-size: 10px;
   position: relative;
@@ -182,12 +235,8 @@ body.light-mode .nav-signin-btn {
   bottom: 5px;
 }
 
-/* ✅ NOTIFICATION BADGE LIGHT MODE */
-body.light-mode .notification p {
-  background: #1f1f1f;
-}
-
 /* AVATAR */
+
 .nav-avatar {
   width: 34px;
   height: 34px;
@@ -196,18 +245,19 @@ body.light-mode .notification p {
 }
 
 .nav-avatar img {
-  width: 34px;
-  height: 34px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
 
 /* DROPDOWN */
+
 .nav-dropdown {
   position: absolute;
   right: 25px;
   top: 55px;
   width: 160px;
-  background: #1e293b;
+  background: #1c1d1b;
   border-radius: 8px;
   padding: 8px 0;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
@@ -246,13 +296,112 @@ body.light-mode .nav-dropdown hr {
 }
 
 /* ANIMATION */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
+/* ================== RESPONSIVE MOBILE ================== */
+/* ================== RESPONSIVE MOBILE ================== */
+/* ================== RESPONSIVE MOBILE ================== */
+@media (max-width: 768px) {
+
+  /* Sidebar collapse */
+  .sidebar {
+    width: 60px;           /* narrow sidebar */
+    padding-top: 10px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .sidebar-text {
+    display: none;         /* hide text, icons only */
+  }
+
+  .sidebar-link {
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .sidebar-icon {
+    width: auto;
+  }
+
+  /* Navbar adjustments */
+  .nav-search {
+    max-width: 150px;      /* shrink search bar */
+    flex: 1;
+  }
+
+  .nav-search input {
+    font-size: 13px;
+    padding: 0 10px;
+  }
+
+  .nav-search button {
+    width: 36px;           /* smaller button */
+    top: 0;
+  }
+
+  .nav-right {
+    gap: 8px;              /* smaller gaps */
+  }
+
+  /* Hide upload button on mobile */
+  .nav-right .fa-upload,
+  .nav-right button[title="Upload"] {
+    display: none;
+  }
+
+  /* Hide notification on mobile */
+  .notification {
+    display: none;
+  }
+
+  /* Optional: reduce navbar padding */
+  .navbar {
+    padding: 0 15px;
+  }
+
+  .nav-search button{
+    position: relative;
+    top: 2.5px;
+  }
+}
+
+/* Extra small screens */@media (max-width: 480px) {
+  /* Navbar adjustments */
+  .nav-left .nav-logo-text {
+    margin: 0px;
+    width: 0px;
+    display: none; /* hide logo text */
+  }
+
+  .nav-search input {
+    width: 120px; /* hide search input, keep button/icon */
+  }
+
+  .nav-search {
+    width: auto;        /* let button size itself */
+    max-width: 70px;    /* small width for icon only */
+    margin-right: 70px;
+  }
+
+  /* Hide upload button */
+  .nav-right .fa-upload,
+  .nav-right button[title="Upload"] {
+    display: none;
+  }
+
+  /* Hide notifications */
+  .notification {
+    display: none;
+  }
+
+  /* Keep only icons: dark mode and profile */
+  .nav-right {
+    gap: 8px; /* reduce spacing */
+  }
+
+  .nav-signin-btn {
+    display: none; /* hide sign-in button on extra small screens */
+  }
+
+  .nav-search button{
+    position: relative;
+    top: 2.5px;
   }
 }

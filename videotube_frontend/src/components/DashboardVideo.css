@@ -1,15 +1,27 @@
+/* ===== THEME VARIABLES (SYNC WITH DASHBOARD) ===== */
+
+:root {
+  --accent-color: #ff6044;
+  --accent-hover: #ff735a;
+}
+
+body.light-mode {
+  --accent-color: #1f1f1f;
+  --accent-hover: #333333;
+}
+
 /* ===== VIDEO CARD CONTAINER ===== */
 
 .dashboardVideo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #1e293b;
+  background: #1c1d1b; /* MATCHED */
   border-radius: 14px;
   padding: 18px 20px;
   margin-bottom: 16px;
   color: #f1f5f9;
-  border: 1px solid #334155;
+  border: 1px solid rgba(255,96,68,0.12);
   transition: all 0.25s ease;
 }
 
@@ -91,7 +103,7 @@
 }
 
 .dashboardVideo-public button:hover {
-  background: #ff6044;
+  background: var(--accent-color);
   color: white;
 }
 
@@ -109,7 +121,7 @@
 }
 
 .dashboardVideo-editVideo button:hover {
-  background: #ff6044;
+  background: var(--accent-color);
   color: white;
 }
 
@@ -134,10 +146,10 @@
 
 .dashboardVideo-updateUserVideo {
   width: 100%;
-  background: #1e293b;
+  background: #1c1d1b; /* MATCHED */
   padding: 22px;
   border-radius: 12px;
-  border: 1px solid #334155;
+  border: 1px solid rgba(255,96,68,0.12);
 }
 
 /* ===== FORM ===== */
@@ -169,8 +181,8 @@
 
 .dashboardVideo-formGroup input,
 .dashboardVideo-formGroup textarea {
-  background: #121313;
-  border: 1px solid #334155;
+  background: #121313; /* MATCHED */
+  border: 1px solid rgba(255,96,68,0.15);
   border-radius: 8px;
   padding: 10px;
   color: #f1f5f9;
@@ -181,7 +193,8 @@
 
 .dashboardVideo-formGroup input:focus,
 .dashboardVideo-formGroup textarea:focus {
-  border-color: #ff6044;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 6px rgba(255,96,68,0.35);
 }
 
 /* ===== FILE INPUT ===== */
@@ -206,14 +219,14 @@
   padding: 8px 16px;
   border-radius: 8px;
   border: none;
-  background: #ff6044;
+  background: var(--accent-color);
   color: white;
   cursor: pointer;
   transition: 0.2s ease;
 }
 
 .updateBtn:hover {
-  opacity: 0.9;
+  background: var(--accent-hover);
 }
 
 /* CANCEL BUTTON */
@@ -234,7 +247,6 @@
 /* ===== MOBILE RESPONSIVE ===== */
 
 @media (max-width: 700px) {
-
   .dashboardVideo {
     flex-direction: column;
     align-items: flex-start;
@@ -251,7 +263,6 @@
     width: 150px;
     height: 84px;
   }
-
 }
 
 /* ===== LIGHT MODE ===== */
@@ -263,8 +274,8 @@ body.light-mode .dashboardVideo {
 }
 
 body.light-mode .dashboardVideo:hover {
-  background: #fff7f5;
-  border-color: #ff6044;
+  background: #f1f1f1;
+  border-color: var(--accent-color);
 }
 
 body.light-mode .dashboardVideo-addition-info {

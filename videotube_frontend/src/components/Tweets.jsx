@@ -91,8 +91,8 @@ const Tweets = () => {
             <p>Content</p>
             <input type="text" required value={updateContent} onChange={(e)=>{setUpdateContent(e.target.value)}}/>
             <div className="buttons">
-              <button onClick={()=>{updateUserTweet()}}>conform</button>
-              <button onClick={()=>{setUpdate(null)}}>cancle</button>
+              <button className="delete" onClick={()=>{updateUserTweet()}}>Confirm</button>
+              <button className="update" onClick={()=>{setUpdate(null)}}>Cancel</button>
             </div>
           </div>
           :<div key={t._id}>
@@ -103,8 +103,8 @@ const Tweets = () => {
             </div>
             <div>{t.content}</div>
             <div className='tweet-buttons'>
-              <button onClick={()=>{deleteUserTweet(t._id)}}>Delete</button>
-              <button onClick={()=>{setUpdate(t._id),setUpdateContent(t.content)}}>Update</button>
+              <button className="delete" onClick={()=>{deleteUserTweet(t._id)}}>Delete</button>
+              <button className="update" onClick={()=>{setUpdate(t._id); setUpdateContent(t.content)}}>Update</button>
             </div>
           </div>
         )})}

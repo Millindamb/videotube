@@ -3,6 +3,7 @@ import{ isAuthContext } from "../context/context";
 import{ Link,useNavigate } from "react-router-dom";
 import{ logoutUser } from "../api/logout";
 import "./Navbar.css";
+import logo from '../assets/Streamera.svg'
 
 const Navbar=({ showSidebar,setShowSidebar })=>{
   const values=useContext(isAuthContext);
@@ -53,9 +54,9 @@ const Navbar=({ showSidebar,setShowSidebar })=>{
 
         <Link to="/" className="logo">
           <div className="nav-logo-box">
-            <i className="fa-solid fa-video"></i>
+            <img src={logo} alt="" />
           </div>
-          <span className="nav-logo-text">videoTube</span>
+          <span className="nav-logo-text"><span className="S">S</span>treamera</span>
         </Link>
       </div>
 
@@ -68,7 +69,7 @@ const Navbar=({ showSidebar,setShowSidebar })=>{
 
       <div className="nav-right">
        {values.isLoggedIn &&(
-          <button onClick={()=>navigate("/dashboard#dashboard-upload-section")} className="nav-icon-btn" title="Upload">
+          <button id="upload" onClick={()=>navigate("/dashboard#dashboard-upload-section")} className="nav-icon-btn" title="Upload">
             <i className="fa-solid fa-upload"></i>
           </button>
         )}

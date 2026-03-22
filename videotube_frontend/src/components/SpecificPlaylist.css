@@ -1,3 +1,19 @@
+/* ===== THEME VARIABLES ===== */
+
+:root {
+  --accent-color: #4f46e5;
+  --accent-hover: #6366f1;
+  --danger-color: #dc3545;
+  --danger-hover: #a71d2a;
+}
+
+body.light-mode {
+  --accent-color: #1f1f1f;
+  --accent-hover: #333333;
+  --danger-color: #1f1f1f;
+  --danger-hover: #333333;
+}
+
 /* ===== Main Container ===== */
 .specific-playlist {
   max-width: 900px;
@@ -52,7 +68,7 @@
 }
 
 .specific-pl-editbox input:focus {
-  border-color: #4f46e5;
+  border-color: var(--accent-color);
   box-shadow: 0 0 6px rgba(79, 70, 229, 0.3);
 }
 
@@ -64,14 +80,14 @@
   border: none;
   cursor: pointer;
   font-size: 14px;
-  background-color: #4f46e5;
+  background-color: var(--accent-color);
   color: white;
   transition: 0.25s ease-in-out;
 }
 
 .specific-pl-editbox form button:hover,
 .specific-pl-editbox > button:hover {
-  background-color: #6366f1;
+  background-color: var(--accent-hover);
 }
 
 /* ===== Video Section ===== */
@@ -95,7 +111,7 @@
 
 /* Remove Video Button */
 .specific-pl-video > div button {
-  background-color: #dc3545;
+  background-color: var(--danger-color);
   color: white;
   padding: 6px 12px;
   border-radius: 6px;
@@ -105,7 +121,7 @@
 }
 
 .specific-pl-video > div button:hover {
-  background-color: #a71d2a;
+  background-color: var(--danger-hover);
 }
 
 /* ===== Empty & Loading Text ===== */
@@ -153,31 +169,12 @@ body.light-mode .specific-pl-editbox input {
 }
 
 body.light-mode .specific-pl-editbox input:focus {
-  border-color: #4f46e5;
-  box-shadow: 0 0 6px rgba(79, 70, 229, 0.3);
-}
-
-body.light-mode .specific-pl-editbox > button,
-body.light-mode .specific-pl-editbox form button {
-  background-color: #4f46e5;
-  color: #ffffff;
-}
-
-body.light-mode .specific-pl-editbox form button:hover,
-body.light-mode .specific-pl-editbox > button:hover {
-  background-color: #6366f1;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
 
 body.light-mode .specific-pl-video > div {
   background-color: #ffffff;
   box-shadow: 0 3px 8px rgba(0,0,0,0.06);
   border: 1px solid #e2e8f0;
-}
-
-body.light-mode .specific-pl-video > div button {
-  background-color: #ef4444;
-}
-
-body.light-mode .specific-pl-video > div button:hover {
-  background-color: #f87171;
 }

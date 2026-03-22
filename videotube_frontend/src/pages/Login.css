@@ -1,3 +1,29 @@
+/* ===== Theme Variables ===== */
+
+:root {
+  --primary-color: #ff6044;
+  --primary-rgb: 255, 96, 68;
+
+  --bg-main: #121311;
+  --bg-card: #1c1d1b;
+  --text-main: #ffffff;
+  --text-secondary: #9ca3af;
+  --input-bg: #121311;
+  --input-border: rgba(255, 96, 68, 0.2);
+}
+
+body.light-mode {
+  --primary-color: #1f1f1f;
+  --primary-rgb: 31, 31, 31;
+
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-secondary: #64748b;
+  --input-bg: #f1f5f9;
+  --input-border: #cbd5e1;
+}
+
 /* ===== Page Center ===== */
 
 .login-center {
@@ -6,7 +32,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: #121311;
+  background: var(--bg-main);
 }
 
 /* ===== Login Card ===== */
@@ -14,10 +40,11 @@
 .login-box {
   width: 100%;
   max-width: 400px;
-  background: #1c1d1b;
+  background: var(--bg-card);
   padding: 40px 30px;
+  margin-bottom: 100px;
   border-radius: 16px;
-  border: 1px solid rgba(255,96,68,0.2);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
   box-shadow: 0 10px 35px rgba(0,0,0,0.6);
 }
 
@@ -32,13 +59,13 @@
   margin: 0;
   font-size: 24px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text-main);
 }
 
 .login-text p {
   margin-top: 6px;
   font-size: 14px;
-  color: #9ca3af;
+  color: var(--text-secondary);
 }
 
 /* ===== Inputs ===== */
@@ -53,15 +80,15 @@
 .login-input p {
   margin-left: 5px;
   font-size: 13px;
-  color: #d1d5db;
+  color: var(--text-secondary);
 }
 
 .login-input input {
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid rgba(255,96,68,0.2);
-  background: #121311;
-  color: #e5e7eb;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text-main);
   outline: none;
   font-size: 14px;
   margin-bottom: 15px;
@@ -69,8 +96,8 @@
 }
 
 .login-input input:focus {
-  border-color: #ff6044;
-  box-shadow: 0 0 8px rgba(255,96,68,0.35);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px rgba(var(--primary-rgb), 0.35);
 }
 
 /* ===== Button ===== */
@@ -84,7 +111,7 @@
   padding: 12px;
   border-radius: 10px;
   border: none;
-  background: #ff6044;
+  background: var(--primary-color);
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -93,7 +120,7 @@
 
 .login-buttons button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255,96,68,0.4);
+  box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.4);
 }
 
 .login-buttons button:disabled {
@@ -105,11 +132,11 @@
 .desc {
   text-align: center;
   font-size: 14px;
-  color: #9ca3af;
+  color: var(--text-secondary);
 }
 
 .register {
-  color: #ff6044;
+  color: var(--primary-color);
   font-weight: 500;
   text-decoration: none;
   margin-left: 4px;
@@ -122,9 +149,9 @@
 /* ===== Error Message ===== */
 
 .error {
-  border: 1px solid rgba(255,96,68,0.4);
-  background: rgba(255,96,68,0.1);
-  color: #ff6044;
+  border: 1px solid rgba(var(--primary-rgb), 0.4);
+  background: rgba(var(--primary-rgb), 0.1);
+  color: var(--primary-color);
   height: 35px;
   border-radius: 6px;
   margin-bottom: 15px;
@@ -137,7 +164,6 @@
 /* ===== Responsive ===== */
 
 @media (max-width: 500px) {
-
   .login-box {
     padding: 30px 22px;
   }
@@ -145,51 +171,4 @@
   .login-text h2 {
     font-size: 22px;
   }
-
-}
-
-/* ===== Light Mode: Login Page ===== */
-body.light-mode .login-center {
-  background: #f8fafc;
-}
-
-body.light-mode .login-box {
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-
-body.light-mode .login-text h2 {
-  color: #0f172a;
-}
-
-body.light-mode .login-text p,
-body.light-mode .login-input p,
-body.light-mode .desc {
-  color: #64748b;
-}
-
-body.light-mode .login-input input {
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  color: #0f172a;
-}
-
-body.light-mode .login-input input:focus {
-  border-color: #ff6044;
-  box-shadow: 0 0 8px rgba(255,96,68,0.35);
-}
-
-body.light-mode .login-buttons button {
-  background: #ff6044;
-}
-
-body.light-mode .login-buttons button:hover {
-  box-shadow: 0 6px 18px rgba(255,96,68,0.35);
-}
-
-body.light-mode .error {
-  border: 1px solid rgba(255,96,68,0.3);
-  background: rgba(255,96,68,0.1);
-  color: #ef4444;
 }

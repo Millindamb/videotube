@@ -44,7 +44,7 @@ const Login = () => {
       <form className='login-box' onSubmit={handleSubmit}>
         <div className='login-text'>
           <h2>Welcome back</h2>
-          <p>Sign in to your StreamVault account</p>
+          <p>Sign in to your Streamera account</p>
         </div>
         <div className='login-input'>
           <p>username</p>
@@ -54,7 +54,7 @@ const Login = () => {
         </div>
         {error && <div className='error' style={{color:'red'}}>{error}</div>}
         <div className='login-buttons'>
-          <button type="submit" disabled={isLoading} style={{cursor:isLoading ? "not-allowed":"pointer",opacity: isLoading ? 0.5:1,}}> {isLoading ? "Signing-In...":"Sign_In"}</button>
+          <button type="submit" disabled={isLoading} style={{cursor:isLoading ? "not-allowed":"pointer",opacity: isLoading ? 0.5:1,}}> {isLoading ? "Signing-In...":"Sign-In"}</button>
         </div>
         <div className='desc'>
           <p>Don't have an account? <Link to="/users/register" className='register'>Sign-up</Link></p>

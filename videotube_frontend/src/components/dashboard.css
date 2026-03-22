@@ -1,3 +1,15 @@
+/* ===== THEME VARIABLES ===== */
+
+:root {
+  --accent-color: #ff6044;
+  --accent-hover: #ff735a;
+}
+
+body.light-mode {
+  --accent-color: #1f1f1f;
+  --accent-hover: #333333;
+}
+
 /* ===== Dashboard Wrapper ===== */
 
 .dashboard {
@@ -82,7 +94,7 @@
 
 .dashboard-records i {
   font-size: 18px;
-  color: #ff6044;
+  color: var(--accent-color);
 }
 
 /* ===== Dashboard Options ===== */
@@ -98,14 +110,12 @@
   text-decoration: none;
 }
 
-/* FIXED BUTTON SIZE */
-
 .dashboard-options button {
   height: 38px;
   padding: 0 16px;
   border-radius: 8px;
   border: none;
-  background: #ff6044;
+  background: var(--accent-color);
   color: white;
   font-size: 14px;
   font-weight: 500;
@@ -117,7 +127,7 @@
 }
 
 .dashboard-options button:hover {
-  background: #ff735a;
+  background: var(--accent-hover);
 }
 
 /* ===== Upload Section ===== */
@@ -154,7 +164,7 @@
 }
 
 .dashboard-upload-video input:focus {
-  border-color: #ff6044;
+  border-color: var(--accent-color);
   box-shadow: 0 0 6px rgba(255,96,68,0.35);
 }
 
@@ -171,19 +181,15 @@
   transition: 0.25s;
 }
 
-/* Upload */
-
 .dashboard-upload-video button[type="submit"] {
-  background: #ff6044;
+  background: var(--accent-color);
   color: white;
   margin-right: 10px;
 }
 
 .dashboard-upload-video button[type="submit"]:hover {
-  background: #ff735a;
+  background: var(--accent-hover);
 }
-
-/* Cancel */
 
 .dashboard-upload-video button[type="button"] {
   background: #334155;
@@ -209,7 +215,6 @@
 /* ===== Responsive ===== */
 
 @media (max-width: 600px) {
-
   .dashboard {
     padding: 20px;
   }
@@ -218,7 +223,6 @@
     width: 80px;
     height: 80px;
   }
-
 }
 
 /* ===== Light Mode ===== */
@@ -236,8 +240,8 @@ body.light-mode .dashboard-upload-video {
 }
 
 body.light-mode .dashboard-records > div:hover {
-  background: #fff7f5;
-  border-color: #ff6044;
+  background: #f1f1f1;
+  border-color: var(--accent-color);
 }
 
 body.light-mode .dashboard-upload-video input {

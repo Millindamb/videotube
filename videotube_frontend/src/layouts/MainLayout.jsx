@@ -9,7 +9,7 @@ const MainLayout = () => {
   const [showSidebar,setShowSidebar]=useState(false);
   return (
     <div style={{display:"flex"}}>
-        {showSidebar && <Sidebar/>}
+        {showSidebar && <Sidebar setShowSidebar={setShowSidebar}/>}
         <div style={{flex: 1}}>
             <Navbar showSidebar={showSidebar} setShowSidebar={setShowSidebar}/>
             <Outlet/>

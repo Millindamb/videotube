@@ -124,7 +124,7 @@ const Settings=() => {
           <button type='submit'>Update</button><button type='button' onClick={()=>setToEdit(0)}>Cancel</button>
         </form>:
         <div>
-          {updating?<div>Updating...</div>
+          {updating && (toEdit===1)?<div>Updating...</div>
           :<div className='settings-form1-view'>
             <p>Full Name</p>
             <div className='settings-form1-fullname'>{fullname}</div>
@@ -135,7 +135,7 @@ const Settings=() => {
         </div>}
         
         {toEdit===2?<form className='settings-form2' onSubmit={(e)=>{e.preventDefault();updateUserCoverImage()}}>
-          {updating?<div>Updating...</div>
+          {updating && (toEdit===2)?<div>Updating...</div>
           :<div className='settings-form2-edit'>
             <p>Cover Image</p>
             <input className='settings-form2-coverImage' type="file" required accept="image/*" onChange={(e)=>{setCoverImage(e.target.files[0])}}/>
@@ -147,7 +147,7 @@ const Settings=() => {
         </div>}
         
         {toEdit===3?<form className='settings-form3' onSubmit={(e)=>{e.preventDefault();updateUserAvatar()}}>
-          {updating?<div>Updating...</div>
+          {updating && (toEdit===3)?<div>Updating...</div>
           :<div className='form3-edit'>
             <p>Avatar Image</p>
             <input className='settings-form3-avatar' type="file" required accept="image/*" onChange={(e)=>{setAvatar(e.target.files[0])}}/>

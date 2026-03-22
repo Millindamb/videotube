@@ -1,3 +1,15 @@
+/* ===== THEME VARIABLES (GLOBAL SYNC) ===== */
+
+:root {
+  --accent-color: #ff6044;
+  --accent-hover: #ff735a;
+}
+
+body.light-mode {
+  --accent-color: #1f1f1f;
+  --accent-hover: #333333;
+}
+
 /* ===== PAGE ROOT ===== */
 
 .channel-profile {
@@ -28,7 +40,6 @@
 .channel-pro-coverImage {
   width: 100%;
   height: 200px;
-  position: relative;
 }
 
 .channel-pro-coverImage img {
@@ -40,7 +51,7 @@
 /* ===== HEADER CONTENT ===== */
 
 .channel-pro-header {
-  display: flex;  
+  display: flex;
   gap: 20px;
   padding: 40px;
   position: relative;
@@ -95,7 +106,7 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background: #ff6044;
+  background: var(--accent-color);
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -103,7 +114,7 @@
 }
 
 .channel-pro-subscribe-button button:hover {
-  opacity: 0.9;
+  background: var(--accent-hover);
 }
 
 /* ===== TAB OPTIONS ===== */
@@ -129,7 +140,7 @@
 
 .channel-pro-option button:hover {
   background: rgba(255,96,68,0.08);
-  color: #f1f5f9;
+  color: var(--accent-color);
 }
 
 /* ===== VIDEOS SECTION ===== */
@@ -155,6 +166,12 @@
   border-radius: 12px;
   padding: 18px;
   border: 1px solid rgba(255,96,68,0.12);
+  transition: 0.25s;
+}
+
+.channel-pro-tweets > div:hover {
+  background: rgba(255,96,68,0.05);
+  border-color: rgba(255,96,68,0.3);
 }
 
 /* ===== TWEET USER ===== */
@@ -196,6 +213,12 @@
   border-radius: 14px;
   padding: 22px;
   border: 1px solid rgba(255,96,68,0.12);
+  transition: 0.25s;
+}
+
+.channel-pro-playlist-info:hover {
+  background: rgba(255,96,68,0.05);
+  border-color: rgba(255,96,68,0.3);
 }
 
 .channel-pro-pl-name {
@@ -239,8 +262,17 @@ body.light-mode .channel-pro-option {
   border-bottom: 1px solid #e2e8f0;
 }
 
+/* FIXED HOVER (NO ORANGE) */
+
 body.light-mode .channel-pro-option button:hover {
-  background: #fff7f5;
+  background: #f1f1f1;
+  color: var(--accent-color);
+}
+
+body.light-mode .channel-pro-tweets > div:hover,
+body.light-mode .channel-pro-playlist-info:hover {
+  background: #f1f1f1;
+  border-color: var(--accent-color);
 }
 
 body.light-mode .channel-pro-avatar {
@@ -251,4 +283,120 @@ body.light-mode .channel-pro-subscribers,
 body.light-mode .channel-pro-pl-description,
 body.light-mode .channel-pro-total {
   color: #64748b;
+}
+
+/* ===== MOBILE RESPONSIVE (≤480px) ===== */
+
+@media (max-width: 480px) {
+
+  .about-channel {
+    width: 95%;
+  }
+
+  /* COVER */
+  .channel-pro-coverImage {
+    height: 140px;
+  }
+
+  /* HEADER */
+  .channel-pro-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 60px 15px 20px;
+  }
+
+  /* AVATAR */
+  .channel-pro-avatar {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 110px;
+  }
+
+  .channel-pro-avatar:hover {
+    transform: translateX(-50%) scale(1.05);
+  }
+
+  /* TEXT */
+  .channel-pro-text {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .channel-pro-name {
+    font-size: 20px;
+  }
+
+  .channel-pro-subscribers {
+    font-size: 12px;
+  }
+
+  /* SUBSCRIBE BUTTON */
+  .channel-pro-subscribe-button {
+    margin: 12px 0 0;
+    width: 100%;
+  }
+
+  .channel-pro-subscribe-button button {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* TABS */
+  .channel-pro-option {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .channel-pro-option button {
+    flex: 1;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  /* VIDEOS GRID */
+  .channel-pro-video {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* PLAYLIST VIDEOS */
+  .channel-pro-videos {
+    grid-template-columns: 1fr;
+  }
+
+  /* TWEETS */
+  .channel-pro-tweets > div {
+    padding: 14px;
+  }
+
+  .channel-pro-user-info img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .channel-pro-user-info div:nth-child(2) {
+    font-size: 14px;
+  }
+
+  .channel-pro-user-info div:last-child {
+    font-size: 11px;
+  }
+
+  /* PLAYLIST */
+  .channel-pro-playlist-info {
+    padding: 16px;
+  }
+
+  .channel-pro-pl-name {
+    font-size: 16px;
+  }
+
+  .channel-pro-pl-description {
+    font-size: 12px;
+  }
 }

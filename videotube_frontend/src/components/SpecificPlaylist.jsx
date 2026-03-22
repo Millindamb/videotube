@@ -65,7 +65,7 @@ const SpecificPlaylist = () => {
             <div className='specific-pldescription'>{description}</div>
           </div>
         }
-        <button onClick={()=>{setCanEdit(!canEdit)}}>edit</button>
+        <button onClick={()=>{setCanEdit(!canEdit)}}>{canEdit?"Cancle":"Edit"}</button>
       </div>
       <div className='specific-pl-video'>
         {loading ? (

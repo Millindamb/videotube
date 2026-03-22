@@ -1,11 +1,37 @@
-/* ===== Main Tweets Container ===== */
+/* ============================= */
+/* THEME VARIABLES */
+/* ============================= */
+
+:root {
+  --accent-color: #ff6044;
+  --bg-main: #121313;
+  --bg-card: #1c1d1b;
+  --text-main: #f1f5f9;
+  --text-secondary: #9ca3af;
+  --border-accent: rgba(255,96,68,0.12);
+  --hover-bg: rgba(255,96,68,0.06);
+}
+
+body.light-mode {
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-secondary: #64748b;
+  --border-accent: #e2e8f0;
+  --hover-bg: #fff7f5;
+}
+
+/* ============================= */
+/* MAIN CONTAINER */
+/* ============================= */
 
 .tweet {
   width: 100%;
   min-height: 100vh;
   padding: 30px 20px;
-  background: #121313;
-  color: #f1f5f9;
+  background: var(--bg-main);
+  color: var(--text-main);
+  box-sizing: border-box;
 }
 
 .Tweets {
@@ -16,24 +42,24 @@
   gap: 22px;
 }
 
-/* ===== Create Tweet Section ===== */
+/* ============================= */
+/* CREATE TWEET SECTION */
+/* ============================= */
 
 .tweet-createTweet {
   max-width: 900px;
   margin: 0 auto 25px auto;
   padding: 20px;
-  background: #1c1d1b;
+  background: var(--bg-card);
   border-radius: 12px;
-  border: 1px solid rgba(255,96,68,0.12);
+  border: 1px solid var(--border-accent);
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* Create Tweet Button */
-
 .tweet-createTweet > button {
-  background: #ff6044;
+  background: var(--accent-color);
   color: white;
   padding: 10px 16px;
   border-radius: 6px;
@@ -48,7 +74,9 @@
   transform: translateY(-2px);
 }
 
-/* ===== Tweet Form Inputs ===== */
+/* ============================= */
+/* TWEET FORM INPUTS */
+/* ============================= */
 
 .tweet-inputs {
   display: flex;
@@ -58,32 +86,49 @@
 
 .tweet-inputs p {
   font-size: 14px;
-  color: #9ca3af;
+  color: var(--text-secondary);
 }
 
 .tweet-inputs input {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid rgba(255,96,68,0.15);
-  background: #121313;
-  color: #f1f5f9;
+  background: var(--bg-main);
+  color: var(--text-main);
   font-size: 14px;
   outline: none;
   transition: all 0.25s ease;
 }
 
 .tweet-inputs input:focus {
-  border-color: #ff6044;
+  border-color: var(--accent-color);
   box-shadow: 0 0 6px rgba(255,96,68,0.3);
 }
 
-/* ===== Tweet Card ===== */
+.tweet-inputs button {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent-color);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.tweet-inputs button:hover {
+  background: #ff735a;
+}
+
+/* ============================= */
+/* TWEET CARD */
+/* ============================= */
 
 .Tweets > div {
-  background: #1c1d1b;
+  background: var(--bg-card);
   padding: 16px;
   border-radius: 12px;
-  border: 1px solid rgba(255,96,68,0.12);
+  border: 1px solid var(--border-accent);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -93,10 +138,12 @@
 .Tweets > div:hover {
   transform: translateY(-3px);
   border-color: rgba(255,96,68,0.35);
-  background: rgba(255,96,68,0.06);
+  background: var(--hover-bg);
 }
 
-/* ===== User Info ===== */
+/* ============================= */
+/* USER INFO */
+/* ============================= */
 
 .tweet-user-info {
   display: flex;
@@ -118,17 +165,21 @@
 
 .tweet-user-info div:last-child {
   font-size: 12px;
-  color: #9ca3af;
+  color: var(--text-secondary);
 }
 
-/* ===== Tweet Content ===== */
+/* ============================= */
+/* TWEET CONTENT */
+/* ============================= */
 
 .Tweets > div > div:nth-child(2) {
   font-size: 15px;
   line-height: 1.4;
 }
 
-/* ===== Buttons ===== */
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
 
 .tweet-buttons,
 .buttons {
@@ -147,109 +198,68 @@ button {
   transition: all 0.25s ease;
 }
 
-/* Delete */
+/* ===== BUTTONS ===== */
 
-.tweet-buttons button:first-child {
-  background: #ff6044;
+/* Delete button */
+.tweet-buttons button.delete,
+.buttons button.delete {
+  background: var(--accent-color);
   color: white;
 }
 
-.tweet-buttons button:first-child:hover {
+.tweet-buttons button.delete:hover,
+.buttons button.delete:hover {
   background: #ff735a;
 }
 
-/* Update */
-
-.tweet-buttons button:last-child {
+/* Update / Cancel button */
+.tweet-buttons button.update,
+.buttons button.update {
   background: #334155;
-  color: #f1f5f9;
-}
-
-.tweet-buttons button:last-child:hover {
-  background: #475569;
-}
-
-/* Confirm Button */
-
-.buttons button:first-child {
-  background: #ff6044;
   color: white;
 }
 
-.buttons button:first-child:hover {
-  background: #ff735a;
-}
-
-/* Cancel */
-
-.buttons button:last-child {
-  background: #334155;
-  color: #f1f5f9;
-}
-
-.buttons button:last-child:hover {
+.tweet-buttons button.update:hover,
+.buttons button.update:hover {
   background: #475569;
 }
 
-/* ===== Update Input ===== */
+/* ============================= */
+/* TWEET CARD HOVER (light/dark mode) */
+/* ============================= */
 
+.Tweets > div {
+  background: var(--bg-card);
+  border: 1px solid var(--border-accent);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.25s ease;
+}
+
+.Tweets > div:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-color);
+  background: var(--hover-bg);
+}
+/* Update Input */
 .Tweets input {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid rgba(255,96,68,0.15);
-  background: #121313;
-  color: #f1f5f9;
+  background: var(--bg-main);
+  color: var(--text-main);
   outline: none;
 }
 
 .Tweets input:focus {
-  border-color: #ff6044;
+  border-color: var(--accent-color);
 }
 
-/* ===== Light Mode ===== */
-
-body.light-mode .tweet {
-  background: #f8fafc;
-  color: #0f172a;
-}
-
-body.light-mode .tweet-createTweet,
-body.light-mode .Tweets > div {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-}
-
-body.light-mode .Tweets > div:hover {
-  background: #fff7f5;
-  border-color: #ff6044;
-}
-
-body.light-mode .tweet-inputs input,
-body.light-mode .Tweets input {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
-}
-
-body.light-mode .tweet-user-info div:last-child {
-  color: #64748b;
-}
-
-body.light-mode .tweet-buttons button:last-child,
-body.light-mode .buttons button:last-child {
-  background: #e2e8f0;
-  color: #0f172a;
-}
-
-body.light-mode .tweet-buttons button:last-child:hover,
-body.light-mode .buttons button:last-child:hover {
-  background: #cbd5e1;
-}
-
-/* ===== Responsive ===== */
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
 
 @media (max-width: 600px) {
-
   .tweet {
     padding: 20px 15px;
   }
@@ -262,5 +272,4 @@ body.light-mode .buttons button:last-child:hover {
   .Tweets > div {
     padding: 14px;
   }
-
 }
