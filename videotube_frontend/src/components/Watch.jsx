@@ -74,7 +74,7 @@ const Watch =()=>{
     const fetchVideos=async()=>{
       try{
         const response=await getVideos();
-        setVideos(response.data.docs);
+        setVideos(response.docs);
       }catch(e){
         console.error(e);
       }

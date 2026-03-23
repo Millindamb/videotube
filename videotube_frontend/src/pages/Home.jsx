@@ -88,6 +88,7 @@ const Home = () => {
           <NavLink className="click-here" to="/users/login">
             Click here
           </NavLink> to sign up and start exploring!
+          Use <span className='click-here'>"user_99999"</span> as Username and <span className='click-here'>"user@12345"</span> as Password.
         </div>
       )}
 
